@@ -1,0 +1,20 @@
+.body{
+  text-align: center;
+  height: 85vh;
+  width: 100vw;
+  background-color: aliceblue;
+  padding-top: 3rem;
+}
+
+.jira{
+  margin-bottom: 5rem;
+}
+
+.text{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.2rem;
+}
+.main{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bolder;
+}

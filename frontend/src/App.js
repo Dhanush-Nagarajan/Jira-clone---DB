@@ -1,12 +1,12 @@
 import './App.css';
+import Body from './components/LandingPage/Body';
 import Header from './components/LandingPage/Header';
 
 function App() {
   return (
     <div className="App">
-      <div> <Header/> </div>
-      
-
+    <Header/>
+    <Body/>
     </div>
   );
 }
