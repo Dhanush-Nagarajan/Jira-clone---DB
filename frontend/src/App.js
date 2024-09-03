@@ -1,9 +1,11 @@
 import './App.css';
+import Header from './components/LandingPage/Header';
 
 function App() {
   return (
     <div className="App">
-      <h1>JIRA</h1>
+      <div> <Header/> </div>
+      
 
     </div>
   );
