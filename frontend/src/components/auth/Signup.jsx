@@ -12,11 +12,21 @@ const Signup = () => {
     cpassword: '',
   });
 
-  const handleSignup = (e) => {
+  const handleSignup = async(e) => {
     e.preventDefault();
-    console.log('submitted', input);
-    axios.post('http://localhost:3000/api/auth/signup',{input})
-    .then(response=>console.log(response))
+
+    if (input.password !== input.cpassword) {
+      console.error("Passwords do not match");
+      return; 
+    }
+
+      await axios.post('http://localhost:2000/api/auth/signup',{
+      fullName:input.fullName,
+      email:input.email,
+      password:input.password,
+      confirmPassword:input.cpassword,
+    })
+    .then(response=> console.log(response))
     .catch(err => console.log(err))
   };
   return (
