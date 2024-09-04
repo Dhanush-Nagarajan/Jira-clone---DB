@@ -7,8 +7,11 @@ const Header = () => {
   return (
     <>    
       <div className="header">
-        <img className="logo" src={logo} alt="logo" />
-        <h2 className="name">Jira</h2>
+        <div className='start'>
+          <img className="logo" src={logo} alt="logo" />
+          <h2 className="name">Jira</h2>
+        </div>
+
         <div className="features">
           <p className="featuresp">Features</p>
           <p className="featuresp">Product</p>
@@ -16,13 +19,10 @@ const Header = () => {
           <p className="featuresp">Pricing</p>
           <p className="featuresp">Enterprise</p>
         </div>
-        <div className="getbutton">
-          <button className="get">Get it free</button>
-        </div>
-        <div>
+
+        <div className='end'>
+          <button className="get getbutton">Get it free</button>
           <IoSearch className="search" />
-        </div>
-        <div>
           <button className="sign">Sign in</button>
         </div>
       </div>
