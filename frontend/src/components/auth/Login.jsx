@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../../assets/logo.png'
 import './Login.css'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
@@ -16,7 +17,7 @@ const Login = () => {
               </div>
             </div>
           <div className='end'>
-            <p className='font'><span>Does not Have an account ?</span> <span className='sign-up'>Sign up here!</span></p>
+            <p className='font'><span>Does not Have an account ?</span> <span className='sign-up'><Link to='/signup'>Sign up here!</Link></span></p>
           </div>
        </div>
     </div>
