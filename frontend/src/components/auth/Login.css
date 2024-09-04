@@ -12,6 +12,16 @@
   background-color: rgb(221, 255, 244);
 }
 
+.login-container{
+  background-color: white;
+  height: 60vh;
+  width: 45vw;
+  display: grid;
+  align-content: space-around;
+  text-align: center;
+  justify-content: center;
+  border-radius: 10px;
+}
 .name-logo{
   margin-left: 5px;
   font-size: 2.6rem;
@@ -22,16 +32,7 @@
 .img{
   width: 2rem;
 }
-.login-container{
-  background-color: white;
-  height: 60vh;
-  width: 30vw;
-  display: grid;
-  align-content: space-around;
-  text-align: center;
-  justify-content: center;
-  border-radius: 10px;
-}
+
 
 .ip-box{
   display: flex;
@@ -48,6 +49,10 @@
   background-color: rgb(245, 244, 244);
   border-radius: 0.5rem;
   cursor: pointer;
+}
+
+.inputb:hover{
+  background-color: rgb(81, 94, 94);
 }
 .i{
   padding-left: 1rem;

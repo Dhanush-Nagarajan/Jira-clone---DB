@@ -18,6 +18,9 @@
     font-weight: 600;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
+  .vis:visited{
+    color: black;
+  }
   
   .img{
     width: 2rem;
@@ -25,7 +28,7 @@
   .sign-container{
     background-color: white;
     height: 80vh;
-    width: 30vw;
+    width: 45vw;
     display: grid;
     align-content: space-around;
     text-align: center;
