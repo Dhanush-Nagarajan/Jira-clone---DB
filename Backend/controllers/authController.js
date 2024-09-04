@@ -5,12 +5,14 @@ import generateTokenAndSetCookie from "../utils/generateToken.js"
 export const signup = async(req,res)=>{
     try {
         const { fullName, email, password, confirmPassword } = req.body;
+
+        const lowerCaseEmail = email.toLowerCase();
  
         if(password !== confirmPassword) {
             return res.status(400).json({error:"Password do not match!"})
         };
 
-        const user = await User.findOne({email});
+        const user = await User.findOne({ email: lowerCaseEmail });
 
         if(user){
             return res.status(400).json({error:"email already exists!"})
