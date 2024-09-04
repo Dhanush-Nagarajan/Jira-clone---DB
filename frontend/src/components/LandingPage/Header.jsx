@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../assets/logo.png';
 import { IoSearch } from "react-icons/io5";
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -23,7 +24,7 @@ const Header = () => {
         <div className='end'>
           <button className="get getbutton">Get it free</button>
           <IoSearch className="search" />
-          <button className="sign">Sign in</button>
+          <button className="sign"><Link to='/login'>Sign in</Link></button>
         </div>
       </div>
     </>
