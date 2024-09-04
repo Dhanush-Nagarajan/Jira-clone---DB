@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../../assets/logo.png';
 import './Signup.css';
-import { NavLink, useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 
 const Signup = () => {
@@ -11,6 +11,10 @@ const Signup = () => {
     password: '',
     cpassword: '',
   });
+
+  const home=()=>{
+    navigate('/')
+  }
 
   const navigate = useNavigate();
 
@@ -33,7 +37,7 @@ const Signup = () => {
         alert('Signup successful! Redirecting to the login page...');
         navigate('/login');
       }
-      
+
     } catch (err) {
       console.error('Error during signup:', err);
       alert('There was an issue with the signup. Please try again.');
@@ -45,7 +49,7 @@ const Signup = () => {
       <div className='signup'>
         <div className='sign-container'>
           <div className='logo-con'>
-            <img className='img' src={logo} alt="logo" /> <span className='name-logo'>Jira</span>
+            <img className='img' src={logo} alt="logo" onClick={home} /> <span className='name-logo' onClick={home}>Jira</span>
             <p className='font'>Sign-up to continue</p>
             <div className='ip-box font'>
               <input
@@ -88,7 +92,7 @@ const Signup = () => {
             </div>
           </div>
           <div className='end'>
-            <p className='font'><span>Already Have an account?</span> <span className='loginn'><NavLink to='/login'>Login now!</NavLink></span></p>
+            <p className='font'><span>Already Have an account?</span> <span className='loginn'><span onClick={()=>{navigate('/login')}}>Login now!</span></span></p>
           </div>
         </div>
       </div>
