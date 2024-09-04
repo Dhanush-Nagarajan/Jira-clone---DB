@@ -1,0 +1,71 @@
+*{
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .signup{
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(221, 255, 244);
+  }
+  
+  .name-logo{
+    margin-left: 5px;
+    font-size: 2.6rem;
+    font-weight: 600;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .img{
+    width: 2rem;
+  }
+  .sign-container{
+    background-color: white;
+    height: 60vh;
+    width: 60vh;
+    display: grid;
+    align-content: space-around;
+    text-align: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  
+  .ip-box{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+  
+  .input{
+    border: 0;
+    padding: 0%;
+    margin: 0;
+    height: 2rem;
+    border: 1px solid rgb(131, 131, 131);
+    background-color: rgb(245, 244, 244);
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    
+    
+  }
+  .i{
+    padding-left: 1rem;
+  }
+  
+  .font{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  
+  }
+  
+  .loginn{
+    cursor: pointer;
+  }
+  
+  .loginn:hover{
+    color: blue;
+    text-decoration: underline;
+  }
