@@ -1,0 +1,93 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 1rem;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 0.33fr 0.33fr 0.33fr;
+  justify-content: space-evenly;
+  height: 15vh;
+  width: 100vw; 
+  align-items: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+ .start{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+ }
+
+.logo {
+  width: 50px;
+}
+
+.name {
+  color: black;
+  font-size: 2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 2%;
+
+}
+
+.featuresp {
+  cursor: pointer;
+}
+
+.featuresp:hover {
+  color: blue;
+}
+
+.end{
+  align-items: center;
+  justify-content: end;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.get{
+  height: 2.5rem;
+  width: 8rem;
+  color: white;
+  font-weight: 900;
+  background-color: blue;
+  border: none;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+.search {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.sign {
+  color: blue;
+  border: none;
+  height: 2rem;
+  width: 4rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sign:hover {
+  background-color: rgb(204, 200, 200);
+}
+
+
+.search:hover {
+  color: blue;
+}
