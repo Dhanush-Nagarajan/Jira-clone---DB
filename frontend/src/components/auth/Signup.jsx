@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import logo from '../../assets/logo.png';
 import './Signup.css';
-import { NavLink } from 'react-router-dom';
-import axios from 'axios'
+import { NavLink, useNavigate } from 'react-router-dom'; 
+import axios from 'axios';
 
 const Signup = () => {
   const [input, setInput] = useState({
@@ -12,23 +12,34 @@ const Signup = () => {
     cpassword: '',
   });
 
-  const handleSignup = async(e) => {
+  const navigate = useNavigate();
+
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     if (input.password !== input.cpassword) {
-      console.error("Passwords do not match");
-      return; 
+      alert("Passwords do not match");
     }
 
-      await axios.post('http://localhost:2000/api/auth/signup',{
-      fullName:input.fullName,
-      email:input.email,
-      password:input.password,
-      confirmPassword:input.cpassword,
-    })
-    .then(response=> console.log(response))
-    .catch(err => console.log(err))
+    try {
+      const response = await axios.post('http://localhost:2000/api/auth/signup', {
+        fullName: input.fullName,
+        email: input.email,
+        password: input.password,
+        confirmPassword: input.cpassword,
+      });
+
+      if (response.status === 201) {
+        alert('Signup successful! Redirecting to the login page...');
+        navigate('/login');
+      }
+      
+    } catch (err) {
+      console.error('Error during signup:', err);
+      alert('There was an issue with the signup. Please try again.');
+    }
   };
+
   return (
     <form onSubmit={handleSignup}>
       <div className='signup'>
@@ -38,7 +49,7 @@ const Signup = () => {
             <p className='font'>Sign-up to continue</p>
             <div className='ip-box font'>
               <input
-                value={input.name}
+                value={input.fullName}
                 onChange={(e) => setInput({ ...input, fullName: e.target.value })}
                 className='input i'
                 type="text"
