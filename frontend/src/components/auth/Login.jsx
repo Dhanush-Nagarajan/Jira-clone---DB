@@ -26,11 +26,9 @@ const Login = () => {
         alert('Login Successfull')
         navigate('/')
       }
-      else if(response.status===400){
-        alert('something wrong')
-      }
+      
     }catch(err){
-        console.error(err)
+        console.error('Error during login:', err)
         alert('Invalid data')
       }
     
