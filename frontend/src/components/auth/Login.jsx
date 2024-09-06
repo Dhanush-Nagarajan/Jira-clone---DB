@@ -24,7 +24,7 @@ const Login = () => {
      
       if(response.status===200){
         alert('Login Successfull')
-        navigate('/')
+        navigate('/home')
       }
       else if(response.status===400){
         alert('something wrong')
