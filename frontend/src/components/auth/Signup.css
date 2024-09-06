@@ -25,6 +25,10 @@
   .img{
     width: 2rem;
   }
+
+  .si{
+    margin-top: 1rem;
+  }
   .sign-container{
     background-color: white;
     height: 80vh;

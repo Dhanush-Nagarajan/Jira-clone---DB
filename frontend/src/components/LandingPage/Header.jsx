@@ -2,9 +2,10 @@ import React from 'react';
 import logo from '../../assets/logo.png';
 import { IoSearch } from "react-icons/io5";
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate=useNavigate();
   return (
     <>    
       <div className="header">
@@ -24,7 +25,7 @@ const Header = () => {
         <div className='end'>
           <button className="get getbutton">Get it free</button>
           <IoSearch className="search" />
-          <button className="sign"><Link to='/login'>Sign in</Link></button>
+          <button onClick={()=>navigate('/signup')} className="sign">Sign in</button>
         </div>
       </div>
     </>
