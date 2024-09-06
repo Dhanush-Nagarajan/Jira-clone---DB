@@ -25,7 +25,7 @@ const Header = () => {
         <div className='end'>
           <button className="get getbutton">Get it free</button>
           <IoSearch className="search" />
-          <button className="sign"><p onClick={()=>navigate('/signup')}>Sign in</p></button>
+          <button className="sign"><span onClick={()=>navigate('/signup')}>Sign in</span></button>
         </div>
       </div>
     </>

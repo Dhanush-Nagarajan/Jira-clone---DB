@@ -21,10 +21,10 @@ const Login = () => {
        <div className='login-container'>
           <div className='logo-con'>
             <img className='img' src={logo} alt="logo" onClick={home}/> <span className='name-logo' onClick={home}>Jira</span>
-            <p className='font'>Login to to continue</p>
+            <p className='font log'>Login to Continue...</p>
               <div className='ip-box font'>
-                <input  className='input i' type="email" placeholder='Enter your Email-id' required/> <br />
-                <input className='input i' type="password" required placeholder='Enter Password'/> <br />
+                <input  className='input i' type="email" placeholder='Enter your Email-id' required/>
+                <input className='input i' type="password" required placeholder='Enter Password'/>
                 <button type='submit' className='input inputb'>Login</button>
               </div>
             </div>

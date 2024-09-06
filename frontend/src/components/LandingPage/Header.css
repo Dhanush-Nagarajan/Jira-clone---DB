@@ -76,6 +76,7 @@
 .sign {
   color: blue;
   border: none;
+  background-color: white;
   height: 2rem;
   width: 4rem;
   font-size: 0.8rem;
@@ -85,6 +86,7 @@
 
 .sign:hover {
   background-color: rgb(204, 200, 200);
+  border-radius: 2rem;
 }
 
 

@@ -50,7 +50,7 @@ const Signup = () => {
         <div className='sign-container'>
           <div className='logo-con'>
             <img className='img' src={logo} alt="logo" onClick={home} /> <span className='name-logo' onClick={home}>Jira</span>
-            <p className='font'>Sign-up to continue</p>
+            <p className='font si'>Sign-up to continue</p>
             <div className='ip-box font'>
               <input
                 value={input.fullName}
@@ -60,7 +60,7 @@ const Signup = () => {
                 placeholder='Enter your name'
                 required
               />
-              <br />
+              
               <input
                 value={input.email}
                 onChange={(e) => setInput({ ...input, email: e.target.value })}
@@ -69,7 +69,7 @@ const Signup = () => {
                 placeholder='Enter your email-id'
                 required
               />
-              <br />
+              
               <input
                 value={input.password}
                 onChange={(e) => setInput({ ...input, password: e.target.value })}
@@ -78,7 +78,7 @@ const Signup = () => {
                 placeholder='Enter your password'
                 required
               />
-              <br />
+              
               <input
                 value={input.cpassword}
                 onChange={(e) => setInput({ ...input, cpassword: e.target.value })}
@@ -87,7 +87,7 @@ const Signup = () => {
                 placeholder='Confirm your password'
                 required
               />
-              <br />
+              
               <button type='submit' className='input inputb'>Sign-up</button>
             </div>
           </div>
