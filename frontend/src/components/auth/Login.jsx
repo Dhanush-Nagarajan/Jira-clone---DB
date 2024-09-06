@@ -1,18 +1,39 @@
+import { useState } from 'react'
 import logo from '../../assets/logo.png'
 import './Login.css'
 import {useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Login = () => {
-
+  const [user,setUser]=useState(
+    { email:'',
+      password:'',
+    }
+  )
   const navigate=useNavigate();
 
-  const handleLogin=(e)=>{
+  const handleLogin= async (e) => {
       e.preventDefault();
-      console.log('submitted')
-  }
 
-  const home=()=>{
-    navigate('/')
+      try {
+        const response= await axios.post('http://localhost:2000/api/auth/login',
+          {
+          email:user.email,
+          password:user.password,
+        });
+     
+      if(response.status===200){
+        alert('Login Successfull')
+        navigate('/')
+      }
+      else if(response.status===400){
+        alert('something wrong')
+      }
+    }catch(err){
+        console.error(err)
+        alert('Invalid data')
+      }
+    
   }
 
   return (
@@ -20,11 +41,15 @@ const Login = () => {
     <div className='login'>
        <div className='login-container'>
           <div className='logo-con'>
-            <img className='img' src={logo} alt="logo" onClick={home}/> <span className='name-logo' onClick={home}>Jira</span>
+            <img className='img' src={logo} alt="logo" onClick={()=>navigate('/')}/> <span className='name-logo' onClick={()=>navigate('/')}>Jira</span>
             <p className='font log'>Login to Continue...</p>
               <div className='ip-box font'>
-                <input  className='input i' type="email" placeholder='Enter your Email-id' required/>
-                <input className='input i' type="password" required placeholder='Enter Password'/>
+                <input value={user.email}  className='input i' type="email" placeholder='Enter your Email-id'
+                  onChange={(e)=>setUser({...user ,email:e.target.value})}
+                  required/>
+                <input value={user.password} className='input i' type="password" 
+                  onChange={(e)=>setUser({...user,password:e.target.value})}
+                  required placeholder='Enter Password'/>
                 <button type='submit' className='input inputb'>Login</button>
               </div>
             </div>
