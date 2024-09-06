@@ -61,11 +61,11 @@ export const login = async(req,res)=>{
         const isPasswordCorrect = await bcrypt.compare(password,user?.password || "");
 
         if(!user || !isPasswordCorrect){
-            res.status(400).json({error:"Invalid email or password"});
+            return res.status(400).json({error:"Invalid email or password"});
         }
         generateTokenAndSetCookie(user._id, res);
 
-        res.status(200).json({
+        return res.status(200).json({
             _id: user._id,
             fullName: user.fullName,
             email: user.email,
