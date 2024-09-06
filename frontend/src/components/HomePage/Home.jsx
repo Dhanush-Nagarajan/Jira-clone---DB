@@ -1,11 +1,12 @@
 import React from 'react'
 import Navbar from './Navbar'
+import Body from './Body'
 
 const Home = () => {
   return (
     <>
     <Navbar/>
-    <h1>Hom</h1>
+    <Body/>
     </>
   )
 }

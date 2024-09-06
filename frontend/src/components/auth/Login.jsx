@@ -28,8 +28,7 @@ const Login = () => {
       }
       
     }catch(err){
-        console.error('Error during login:', err)
-        alert('Invalid data')
+        alert('Invalid email or password')
       }
     
   }
