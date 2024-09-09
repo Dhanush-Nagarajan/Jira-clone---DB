@@ -7,22 +7,36 @@
   border-right: 0.2rem solid rgb(233, 232, 232);
 }
 
+.name:hover{
+  background-color: rgb(155, 155, 223);
+  border-radius: 10px;
+  color: white;
+}
+
+.dp{
+  height: 40px;
+  width: 40px;
+  background-color: greenyellow;
+  border-radius: 20px;
+  text-align: center;
+  align-content: center;
+}
+
 .name{
   height: 5rem;
   width: 18vw;
-  background-color: aquamarine;
   display: flex;
   justify-content: center;
   align-items: center;
   padding-right:60px;
+  gap:8px;
 }
 
 .plan{
- 
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
-  gap: 1.5rem;
+  gap: 1rem;
   color: grey;
   text-align: center;
 }
@@ -35,12 +49,21 @@
 }
 
 .p{
-  height: 20px;
+  height: 40px;
   width: 18vw;
   display: flex;
   align-items: center;
+  border-radius: 5px;
+  padding-left: 3rem;
 }
 
-.p:hover{
+.ph{
+  height: 40px;
+  align-content: center;
+  border-radius: 5px;
+}
+
+.p:hover,.ph:hover{
   background-color: rgb(155, 155, 223);
+  color: white;
 }
