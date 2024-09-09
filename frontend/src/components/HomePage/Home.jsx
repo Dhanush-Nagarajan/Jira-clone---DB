@@ -7,7 +7,8 @@ import ActiveProject from '../ActiveProject/ActiveProject'
 const Home = () => {
   return (
     <>
-    <ActiveProject/>
+    <Navbar/>
+    <Body/>
     </>
   )
 }

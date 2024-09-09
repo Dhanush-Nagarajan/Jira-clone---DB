@@ -1,10 +1,17 @@
 import React from 'react'
 import { FaArrowLeft } from "react-icons/fa";
 import style from './CreateProject.module.css'
+import { useNavigate } from 'react-router-dom';
 
 const CreateProject = () => {
+  const navigate =useNavigate();
+  const handleCreate = (e) =>{
+    e.preventDefault();
+    navigate('/project')
+  }
   return (
     <>
+    <form onSubmit={handleCreate}>
     <div className={style.header}>
     <div className={style.head}> <div className={style.inner}><FaArrowLeft/><span>Back to Home</span></div></div>
     <div className={style.body}>
@@ -24,11 +31,12 @@ const CreateProject = () => {
           <label className={style.p}>Key</label> <input type="text" className={style.ip}  />
           </div>
           <div className={style.buttondiv}>
-          <button className={style.button1}>Cancel</button> <button className={style.button2}>Next</button>
+          <button className={style.button1}>Cancel</button> <button type='submit' className={style.button2}>Next</button>
           </div>
       </div>
     </div>
     </div>
+    </form>
     </>
   )
 }
