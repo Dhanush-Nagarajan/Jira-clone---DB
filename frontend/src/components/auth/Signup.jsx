@@ -12,11 +12,12 @@ const Signup = () => {
     cpassword: '',
   });
 
+  const navigate = useNavigate();
+  
   const home=()=>{
     navigate('/')
   }
 
-  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();

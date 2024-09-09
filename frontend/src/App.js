@@ -4,6 +4,8 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Landing from './components/LandingPage/Landing';
 import Home from './components/HomePage/Home';
+import ActiveProject from './components/ActiveProject/ActiveProject';
+import CreateProject from './components/CreateProject/CreateProject';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/home' element={<Home/>}/>
+          <Route path='/create-project' element={<CreateProject/>}/>
+          <Route path='/project' element={<ActiveProject/>}/>
       </Routes>
     </BrowserRouter>
   );

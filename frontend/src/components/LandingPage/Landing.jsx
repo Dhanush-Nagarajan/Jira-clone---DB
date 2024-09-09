@@ -5,7 +5,7 @@ import Body from './Body'
 const Landing = () => {
   return (
     <>
-    <Header/>
+    <Header />
     <Body/>
     </>
   )

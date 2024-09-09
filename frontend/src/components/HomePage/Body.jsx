@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Body.module.css'
+import CreateProject from '../CreateProject/CreateProject'
 
 const Body = () => {
   return (

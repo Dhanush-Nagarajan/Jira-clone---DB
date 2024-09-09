@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import logo from '../../assets/logo.png';
+<<<<<<< HEAD
 import styles from './Navbar.module.css'
 
 const Navbar = () => {
@@ -14,6 +15,16 @@ const Navbar = () => {
         <div className={styles.start1}>
             <img className="logo" src={logo} alt="logo" />
             <h2>JIRA</h2>
+=======
+import { useNavigate } from 'react-router-dom';
+
+const Navbar = () => {
+  const navigate=useNavigate()
+  return (
+    <div>
+        <div onClick={()=>{navigate('/create-project')}}>
+        <img className="logo" src={logo} alt="logo"/>
+>>>>>>> 7932f88a1861ee23f9c1305f35c2a8eac716654d
         </div>
         
 
