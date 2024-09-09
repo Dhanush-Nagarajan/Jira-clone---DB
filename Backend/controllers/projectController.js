@@ -2,16 +2,15 @@ import Project from "../models/projectModels.js";
 
 export const createProject = async (req, res) => {
   try {
-    const {Project_type, Project_name, Access, Key } = req.body;
+    const {Project_name, Access, Key } = req.body;
     const createdBy = req.user._id;
 
-    const existingProject = await Project.findOne({ Project_type, Key });
+    const existingProject = await Project.findOne({ Key });
     if (existingProject) {
-      return res.status(400).json({ error: "Project with this type or key already exists" });
+      return res.status(400).json({ error: "Project with this key already exists" });
     }
 
     const newProject = new Project({
-      Project_type,
       Project_name,
       Access,
       Key,

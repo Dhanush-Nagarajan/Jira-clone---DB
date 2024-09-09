@@ -2,11 +2,6 @@ import mongoose from "mongoose";
 
 const projectSchema = new mongoose.Schema(
 	{
-		Project_type: {
-			type: String,
-			required: true,
-			enum: ['Team-managed project', 'Company-managed project']
-		},
 		Project_name: {
 			type: String,
 			required: true,
