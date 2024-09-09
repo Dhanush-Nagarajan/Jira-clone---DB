@@ -2,7 +2,8 @@ import Project from "../models/projectModels.js";
 
 export const createProject = async (req, res) => {
   try {
-    const { template, Project_type, Project_name, Access, Key } = req.body;
+    const {Project_type, Project_name, Access, Key } = req.body;
+    const createdBy = req.user._id;
 
     const existingProject = await Project.findOne({ Project_type, Key });
     if (existingProject) {
@@ -10,11 +11,11 @@ export const createProject = async (req, res) => {
     }
 
     const newProject = new Project({
-      template,
       Project_type,
       Project_name,
       Access,
       Key,
+      createdBy,
     });
 
     await newProject.save();
@@ -25,3 +26,5 @@ export const createProject = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+export default createProject;

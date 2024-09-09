@@ -2,11 +2,6 @@ import mongoose from "mongoose";
 
 const projectSchema = new mongoose.Schema(
 	{
-		template: {
-			type: String,
-			required: true,
-			enum: ['Kanban', 'Scrum', 'Top-level planning', 'Cross-team planning', 'Product roadmap', 'Bug tracking']
-		},
 		Project_type: {
 			type: String,
 			required: true,
@@ -27,6 +22,11 @@ const projectSchema = new mongoose.Schema(
 			required: true,
 			minlength: 1,
 		},
+		createdBy: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
+			required: true,
+		}
 	},
 	{ timestamps: true }
 );
