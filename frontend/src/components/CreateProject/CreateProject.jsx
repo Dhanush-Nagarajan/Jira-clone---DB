@@ -13,7 +13,7 @@ const CreateProject = () => {
     <>
     <form onSubmit={handleCreate}>
     <div className={style.header}>
-    <div className={style.head}> <div className={style.inner}><FaArrowLeft/><span>Back to Home</span></div></div>
+    <div className={style.head}> <div className={style.inner}><FaArrowLeft className={style.icon} onClick={()=>navigate('/home')}/><span className={style.icon} onClick={()=>navigate('/home')}>Back to Home</span></div></div>
     <div className={style.body}>
       <div className={style.innerbody}>
       <h1>Add Project Details</h1>
