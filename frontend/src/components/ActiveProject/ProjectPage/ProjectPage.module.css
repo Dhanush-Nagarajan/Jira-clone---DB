@@ -41,3 +41,61 @@
   height: 20px;
   width: 20px;
 }
+
+.workcon{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.input{
+  padding-left: 0.5rem;
+  height: 35px;
+  width: 7rem;
+}
+.ucon{
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  gap: 3px;
+}
+
+.usname{
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  background-color: grey;
+  color: white;
+  font-size: large;
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.sprint{
+  height: 2rem;
+  width: 5rem;
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.sprint:hover{
+  background-color: rgb(214, 212, 212);
+  border-radius: 5px;
+}
+
+.todocon{
+  display: grid;
+  margin-top: 1rem;
+  grid-template-columns: 0.25fr 0.25fr 0.25fr;
+  gap: 3rem;
+}
+
+.todobox{
+  background-color: rgb(223, 222, 222);
+  min-height: 21rem;
+  height: auto;
+  padding: 10px;
+  border-radius: 5px;
+}
