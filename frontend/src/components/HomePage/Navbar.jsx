@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import logo from '../../assets/logo.png';
-<<<<<<< HEAD
 import styles from './Navbar.module.css'
 
 const Navbar = () => {
@@ -15,16 +14,6 @@ const Navbar = () => {
         <div className={styles.start1}>
             <img className="logo" src={logo} alt="logo" />
             <h2>JIRA</h2>
-=======
-import { useNavigate } from 'react-router-dom';
-
-const Navbar = () => {
-  const navigate=useNavigate()
-  return (
-    <div>
-        <div onClick={()=>{navigate('/create-project')}}>
-        <img className="logo" src={logo} alt="logo"/>
->>>>>>> 7932f88a1861ee23f9c1305f35c2a8eac716654d
         </div>
         
 
@@ -32,6 +21,9 @@ const Navbar = () => {
             <p>Your works</p>
             <p>Projects</p>
         </div>
+
+        
+        
         <div>
             <button className={styles.button}>Create</button>
         </div>
@@ -39,23 +31,21 @@ const Navbar = () => {
         <input type='search' placeholder='Search'/> 
         </div>
         
-        <div className={styles.profile} onClick={toggleDropdown}>
-        <img
-          className={styles.profileImg}
-          src="path/to/profile-img.png"
-          alt="User"
-        />
-        {isDropdownOpen && (
-          <div className={styles.profileMenu}>
-            <p>Profile</p>
-            <p>Logout</p>
+        <div className={styles.dropdown}>
+          <button className={styles.dropbutton}>USER</button>
+          <div className={styles.dropcontent}>
+          
+            <a href='profile'>profile</a>
+            <a href='logout'>logout</a>
+            
           </div>
-        )}
-      </div>
+        </div>
             
                 
         
     </div>
+        
+        
         <hr />
     </>
   )
