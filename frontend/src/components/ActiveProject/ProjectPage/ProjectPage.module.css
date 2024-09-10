@@ -92,10 +92,35 @@
   gap: 3rem;
 }
 
+.flow{
+  font-size: small;
+}
+
 .todobox{
   background-color: rgb(223, 222, 222);
   min-height: 21rem;
   height: auto;
   padding: 10px;
   border-radius: 5px;
+}
+
+.taskbox{
+  height: 5rem;
+  margin-top: 10px;
+  padding: 5px;
+  padding-left: 7px;
+  padding-right:12px;
+  width: 100%;
+  background-color: cadetblue;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.inner{
+  display: flex;
+  justify-content: space-between;
 }
