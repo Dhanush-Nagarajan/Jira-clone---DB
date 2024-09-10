@@ -11,10 +11,13 @@
   gap: 20px;
 }
 .inner{
-  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.icon{
+  cursor: pointer;
 }
 
 .body{

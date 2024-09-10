@@ -1,7 +1,7 @@
 .container{
   padding: 0;
   margin: 0;
-  height: 100vh;
+  height: 90vh;
   width: 18vw;
   border: none;
   border-right: 0.2rem solid rgb(233, 232, 232);
@@ -59,8 +59,11 @@
 
 .ph{
   height: 40px;
-  align-content: center;
+  padding-right: 4rem;
   border-radius: 5px;
+  align-content: center;
+  color: black;
+  font-weight: bolder;
 }
 
 .p:hover,.ph:hover{

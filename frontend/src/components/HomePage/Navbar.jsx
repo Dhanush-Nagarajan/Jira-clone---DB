@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import logo from '../../assets/logo.png';
 import styles from './Navbar.module.css'
+import { useNavigate } from 'react-router-dom';
+
 
 const Navbar = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+    const navigate=useNavigate()
 
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -25,7 +29,7 @@ const Navbar = () => {
         
         
         <div>
-            <button className={styles.button}>Create</button>
+            <button className={styles.button} onClick={()=>{navigate('/create-project')}}>Create</button>
         </div>
         <div className={styles.search}>
         <input type='search' placeholder='Search'/> 
