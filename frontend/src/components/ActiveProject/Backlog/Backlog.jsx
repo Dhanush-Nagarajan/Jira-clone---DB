@@ -15,6 +15,10 @@ const Backlog = () => {
         <div>
           <h2>Backlog</h2>
         </div>
+
+        <div>
+          <input type='search' placeholder='search'></input>
+        </div>
       </div>
     </>
   )

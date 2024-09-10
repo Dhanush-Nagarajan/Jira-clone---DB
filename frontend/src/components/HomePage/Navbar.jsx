@@ -32,17 +32,20 @@ const Navbar = () => {
             <button className={styles.button} onClick={()=>{navigate('/create-project')}}>Create</button>
         </div>
         <div className={styles.search}>
-        <input type='search' placeholder='Search'/> 
+        <input className={styles.search1} type='search' placeholder='Search'/> 
         </div>
         
         <div className={styles.dropdown}>
-          <button className={styles.dropbutton}>USER</button>
-          <div className={styles.dropcontent}>
+          <button className={styles.dropbutton} onClick={toggleDropdown}>D</button>
+          {isDropdownOpen && (
+              <div className={styles.dropcontent}>
+                
+              <a href='/profile'>profile</a>
+              <a href='/logout'>logout</a>
+              
+            </div>
+          )}
           
-            <a href='profile'>profile</a>
-            <a href='logout'>logout</a>
-            
-          </div>
         </div>
             
                 
