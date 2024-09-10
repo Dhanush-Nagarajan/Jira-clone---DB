@@ -22,6 +22,11 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
+    if (input.password.length < 6) {
+      alert("Password must be at least 6 characters long");
+      return;
+    }
+
     if (input.password !== input.cpassword) {
       alert("Passwords do not match");
     }
