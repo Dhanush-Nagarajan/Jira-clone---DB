@@ -11,14 +11,22 @@ const Backlog = () => {
         <div>
           <Sidebar/>
         </div>
-
-        <div>
+        <div className={style.body}>
+        <div className={style.head}>
           <h2>Backlog</h2>
+        </div> 
+
+        <div > 
+          <input className={style.search1}  type='search' placeholder='search'/> 
+          <button className={style.user}>D</button>
+        </div> 
+        <div>
+          <button className={style.button}>+ Create issue</button>
+
+          
         </div>
 
-        <div>
-          <input type='search' placeholder='search'></input>
-        </div>
+      </div>
       </div>
     </>
   )
