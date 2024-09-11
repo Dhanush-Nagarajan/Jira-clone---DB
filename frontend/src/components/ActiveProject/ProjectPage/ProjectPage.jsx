@@ -62,8 +62,9 @@ const ProjectPage = () => {
               <div className={style.usname}>M</div></div>
             </div>
             
+            
           </div>
-          <div droppable className={style.todobox}>
+          <div droppable={true.toString()} className={style.todobox}>
             <p className={style.flow}>IN PROGRESS</p>
           </div>
           <div className={style.todobox}>
