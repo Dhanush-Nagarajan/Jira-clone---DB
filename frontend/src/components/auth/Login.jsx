@@ -23,7 +23,6 @@ const Login = () => {
         });
      
       if(response.status===200){
-        alert('Login Successfull')
         navigate('/home')
       }
       
