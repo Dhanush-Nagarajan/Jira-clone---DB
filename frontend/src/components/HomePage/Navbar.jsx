@@ -2,12 +2,31 @@ import React, { useState } from 'react'
 import logo from '../../assets/logo.png';
 import styles from './Navbar.module.css'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Navbar = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     const navigate=useNavigate()
+
+    const handleLogout= async()=>{
+
+        try {
+          const response = await axios.post('http://localhost:2000/api/auth/logout')
+            if(response.status===200){
+              localStorage.removeItem('token');
+              navigate('/login')
+            }
+            else{
+              console.log('Failed to logout',response.data.error)
+            }
+        }
+        catch(error){
+          console.error('Error occured',error)
+        }    
+
+    }
 
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -39,10 +58,8 @@ const Navbar = () => {
           <button className={styles.dropbutton} onClick={toggleDropdown}>D</button>
           {isDropdownOpen && (
               <div className={styles.dropcontent}>
-                
-              <a href='/profile'>profile</a>
-              <a href='/logout'>logout</a>
-              
+                <p>profile</p>
+                <p onClick={handleLogout}>logout</p>
             </div>
           )}
           
