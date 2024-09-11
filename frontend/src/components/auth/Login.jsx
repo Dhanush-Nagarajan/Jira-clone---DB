@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import logo from '../../assets/logo.png';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +21,7 @@ const Login = () => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data));
         navigate('/home');
+        
       }
     } catch (err) {
       setError('Invalid email or password');
@@ -28,15 +29,7 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const userData = JSON.parse(localStorage.getItem('user'));
-
-    if (token && userData) {
-      console.log('Token:', token);
-      console.log('User Data:', userData);
-    }
-  }, []);
+  
 
   return (
     <form onSubmit={handleLogin}>
