@@ -6,7 +6,7 @@ import axios from 'axios';
 import { AuthContext } from '../../Context/AuthContext.jsx';
 
 const CreateProject = () => {
-  const { user,token } = useContext(AuthContext); // Access user data from context
+  const { user } = useContext(AuthContext); 
   const [Project_name, setProjectName] = useState('');
   const [Access, setAccess] = useState('Private');
   const [Key, setKey] = useState('');
@@ -25,24 +25,25 @@ const CreateProject = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     setError('');
-  
+    
     if (!Project_name || !Key) {
       setError('Please fill out all required fields.');
       return;
     }
-  
+    
     try {
       const response = await axios.post('http://localhost:2000/api/projects/createproject', {
         Project_name,
         Access,
         Key,
       }, {
-        withCredentials: true, // Ensure this matches your backend CORS settings
+        withCredentials: true,
       });
-  
+    
       if (response.status === 201) {
         setError('');
         navigate('/project');
+        console.log('Project Created')
       } else {
         setError('Failed to create project. Please try again.');
       }

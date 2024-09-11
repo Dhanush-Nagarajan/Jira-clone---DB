@@ -26,6 +26,7 @@ const Login = () => {
 
                 setGlobalToken(token);
                 setGlobalUser(userData);
+                console.log(token)
 
                 navigate('/home');
             }
