@@ -5,19 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const CreateProject = () => {
-  const [projectName, setProjectName] = useState('');
-  const [access, setAccess] = useState('Private');
-  const [key, setKey] = useState('');
+  const [Project_name, setProjectName] = useState('');
+  const [Access, setAccess] = useState('Private');
+  const [Key, setKey] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (projectName.length >= 3) {
-      setKey(projectName.substring(0, 3).toUpperCase());
+    if (Project_name.length >= 3) {
+      setKey(Project_name.substring(0, 3).toUpperCase());
     } else {
       setKey('');
     }
-  }, [projectName]);
+  }, [Project_name]);
 
 
   const handleCreate = async (e) => {
@@ -27,16 +27,18 @@ const CreateProject = () => {
     setError('');
 
 
-    if (!projectName || !key) {
+    if (!Project_name || !Key) {
       setError('Please fill out all required fields.');
       return;
     }
 
     try {
       const response = await axios.post('http://localhost:2000/api/projects/createproject', {
-        projectName,
-        access,
-        key,
+        Project_name,
+        Access,
+        Key,
+      },{
+        withCredentials: true,
       });
 
       if (response.status === 201) {
@@ -70,7 +72,7 @@ const CreateProject = () => {
                 className={style.ip}
                 type='text'
                 placeholder='Project Name'
-                value={projectName}
+                value={Project_name}
                 onChange={(e) => setProjectName(e.target.value)}
               />
               <br />
@@ -79,7 +81,7 @@ const CreateProject = () => {
                 name="access"
                 id="access"
                 className={style.ip}
-                value={access}
+                value={Access}
                 onChange={(e) => setAccess(e.target.value)}
               >
                 <option className={style.ip} value="Private">Private</option>
@@ -92,7 +94,7 @@ const CreateProject = () => {
                 type="text"
                 className={style.ip}
                 placeholder='Project Key'
-                value={key}
+                value={Key}
                 readOnly
               />
             </div>
