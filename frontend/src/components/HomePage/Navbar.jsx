@@ -10,23 +10,20 @@ const Navbar = () => {
 
     const navigate=useNavigate()
 
-    const handleLogout= async()=>{
-
-        try {
-          const response = await axios.post('http://localhost:2000/api/auth/logout')
-            if(response.status===200){
-              localStorage.removeItem('token');
-              navigate('/login')
-            }
-            else{
-              console.log('Failed to logout',response.data.error)
-            }
+    const handleLogout = async () => {
+      try {
+        const response = await axios.post('http://localhost:2000/api/auth/logout');
+        if (response.status === 200) {
+          localStorage.removeItem('token');
+          navigate('/login');
+        } else {
+          console.error('Failed to logout:', response.data.error || 'Unknown error');
         }
-        catch(error){
-          console.error('Error occured',error)
-        }    
-
-    }
+      } catch (error) {
+        console.error('Error occurred during logout:', error);
+      }
+    };
+    
 
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -44,9 +41,6 @@ const Navbar = () => {
             <p>Your works</p>
             <p>Projects</p>
         </div>
-
-        
-        
         <div>
             <button className={styles.button} onClick={()=>{navigate('/create-project')}}>Create</button>
         </div>
@@ -63,13 +57,9 @@ const Navbar = () => {
             </div>
           )}
           
-        </div>
-            
-                
-        
+        </div>    
     </div>
-        
-        
+
         <hr />
     </>
   )
