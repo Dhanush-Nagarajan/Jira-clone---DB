@@ -8,7 +8,9 @@ import ActiveProject from './components/ActiveProject/ActiveProject';
 import CreateProject from './components/CreateProject/CreateProject';
 import Backlog from './components/ActiveProject/Backlog/Backlog';
 
+
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -19,6 +21,7 @@ function App() {
           <Route path='/create-project' element={<CreateProject/>}/>
           <Route path='/project' element={<ActiveProject/>}/>
           <Route path='/backlog' element={<Backlog/>}/>
+y
       </Routes>
     </BrowserRouter>
   );

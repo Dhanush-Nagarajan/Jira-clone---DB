@@ -10,10 +10,13 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Retrieve token and user data from localStorage
     const token = localStorage.getItem('token');
     const storedUserData = JSON.parse(localStorage.getItem('user'));
     setUserData(storedUserData);
+    if (token && userData) {
+      console.log('Token:', token);
+      console.log('User Data:', userData);
+    }
   }, []);
 
   const handleLogout = async () => {
