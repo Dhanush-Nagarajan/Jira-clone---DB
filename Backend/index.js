@@ -9,7 +9,6 @@ import ProjectRoutes from "./routes/projectRoutes.js"
 import addUser from "./routes/addMemberRoutes.js"
 
 const app = express();
-app.use(cors());
 app.use(cookieParser());
 const PORT = process.env.PORT || 2000;
 
@@ -18,6 +17,8 @@ app.use(express.json());
 const corsOptions = {
     origin: 'http://localhost:3000', 
     credentials: true, 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
   
 app.use(cors(corsOptions));

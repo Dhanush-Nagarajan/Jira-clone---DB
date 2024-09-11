@@ -48,7 +48,7 @@ const CreateProject = () => {
         setError('Failed to create project. Please try again.');
       }
     } catch (error) {
-      console.error('Error creating project:', error);
+      console.error('Error creating project:', error.message);
       setError(error.response?.data?.error || 'An error occurred. Please try again later.');
     }
   };
