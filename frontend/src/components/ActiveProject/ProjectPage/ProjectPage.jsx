@@ -50,13 +50,20 @@ const ProjectPage = () => {
         <div className={style.todocon}>
           <div className={style.todobox}>
             <p className={style.flow}>TO DO</p>
-            <div className={style.taskbox} onClick={handleOpenModal}>
+            <div className={style.taskbox} onClick={handleOpenModal} draggable>
               <div className={style.inner}><p>login</p> <HiDotsHorizontal /></div>
               <div className={style.inner}><p>PRJ-1</p> 
               <div className={style.usname}>M</div></div>
             </div>
+
+            <div className={style.taskbox} onClick={handleOpenModal} draggable>
+              <div className={style.inner}><p>login</p> <HiDotsHorizontal /></div>
+              <div className={style.inner}><p>PRJ-1</p> 
+              <div className={style.usname}>M</div></div>
+            </div>
+            
           </div>
-          <div className={style.todobox}>
+          <div droppable className={style.todobox}>
             <p className={style.flow}>IN PROGRESS</p>
           </div>
           <div className={style.todobox}>
