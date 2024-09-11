@@ -1,6 +1,6 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 dotenv.config();
 import connectToMongoDB from './db/connectToMongoDB.js';
