@@ -7,16 +7,11 @@
   border-right: 0.2rem solid rgb(233, 232, 232);
 }
 
-.name:hover{
-  background-color: rgb(155, 155, 223);
-  border-radius: 10px;
-  color: white;
-}
-
 .dp{
   height: 40px;
   width: 40px;
-  background-color: greenyellow;
+  color: white;
+  background-color: rgb(101, 101, 255);
   border-radius: 20px;
   text-align: center;
   align-content: center;
@@ -55,6 +50,7 @@
   align-items: center;
   border-radius: 5px;
   padding-left: 3rem;
+  cursor: pointer;
 }
 
 .ph{
@@ -66,7 +62,7 @@
   font-weight: bolder;
 }
 
-.p:hover,.ph:hover{
+.p:hover{
   background-color: rgb(155, 155, 223);
   color: white;
 }

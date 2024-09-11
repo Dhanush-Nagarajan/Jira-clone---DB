@@ -6,9 +6,9 @@ export const createProject = async (req, res) => {
     const { Project_name, Access, Key } = req.body;
     const createdBy = req.user._id;
 
-    const existingProject = await Project.findOne({ Key });
+    const existingProject = await Project.findOne({ Project_name });
     if (existingProject) {
-      return res.status(400).json({ error: "Project with this key already exists" });
+      return res.status(400).json({ error: "Project with this name already exists" });
     }
 
     const newProject = new Project({

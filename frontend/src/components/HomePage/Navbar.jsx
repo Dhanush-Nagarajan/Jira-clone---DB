@@ -2,12 +2,28 @@ import React, { useState } from 'react'
 import logo from '../../assets/logo.png';
 import styles from './Navbar.module.css'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Navbar = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     const navigate=useNavigate()
+
+    const handleLogout = async () => {
+      try {
+        const response = await axios.post('http://localhost:2000/api/auth/logout');
+        if (response.status === 200) {
+          localStorage.removeItem('token');
+          navigate('/login');
+        } else {
+          console.error('Failed to logout:', response.data.error || 'Unknown error');
+        }
+      } catch (error) {
+        console.error('Error occurred during logout:', error);
+      }
+    };
+    
 
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -25,31 +41,25 @@ const Navbar = () => {
             <p>Your works</p>
             <p>Projects</p>
         </div>
-
-        
-        
         <div>
             <button className={styles.button} onClick={()=>{navigate('/create-project')}}>Create</button>
         </div>
         <div className={styles.search}>
-        <input type='search' placeholder='Search'/> 
+        <input className={styles.search1} type='search' placeholder='Search'/> 
         </div>
         
         <div className={styles.dropdown}>
-          <button className={styles.dropbutton}>USER</button>
-          <div className={styles.dropcontent}>
+          <button className={styles.dropbutton} onClick={toggleDropdown}>D</button>
+          {isDropdownOpen && (
+              <div className={styles.dropcontent}>
+                <p>profile</p>
+                <p onClick={handleLogout}>logout</p>
+            </div>
+          )}
           
-            <a href='profile'>profile</a>
-            <a href='logout'>logout</a>
-            
-          </div>
-        </div>
-            
-                
-        
+        </div>    
     </div>
-        
-        
+
         <hr />
     </>
   )
