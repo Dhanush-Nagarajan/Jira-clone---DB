@@ -8,19 +8,24 @@ import { FaCaretDown } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import style from './ProjectPage.module.css';
 import AddPeopleModal from './Modal/AddPeopleModal';
+import IssueModal from './Modal/IssueModal';
 
 const ProjectPage = () => {
-  const [addPeople,setAddPeople] = useState(false)
+  const [addPeople, setAddPeople] = useState(false);
+  const [issueModal, setIssueModal] = useState(false);
 
-  const toggleModal=()=>{
-    setAddPeople(true)
-  }
+  const toggleModal = () => {
+    setAddPeople(true);
+  };
+
+  const toggleIssueModal = () => {
+    setIssueModal(true);
+  };
+
   return (
     <>
       <div className={style.body}>
-        <div>
-          Projects / Projects1
-        </div>
+        <div>Projects / Projects1</div>
 
         <div className={style.sprintcon}>
           <div>
@@ -38,45 +43,42 @@ const ProjectPage = () => {
         <div>
           <div className={style.workcon}>
             <input type="search" placeholder='Search' className={style.input} />
-              <div className={style.ucon}>
-                    <div className={style.usname}>M</div>
-                    <div className={style.usname}>M</div>
-                    <div title='Add user' className={style.usname} onClick={toggleModal}><TiUserAdd/></div>
-                    {addPeople && <AddPeopleModal close={setAddPeople}/>}
+            <div className={style.ucon}>
+              <div className={style.usname}>M</div>
+              <div className={style.usname}>M</div>
+              <div title='Add user' className={style.usname} onClick={toggleModal}>
+                <TiUserAdd />
               </div>
-              <div className={style.sprint}>
-                <p title='sprint'>Sprint <FaCaretDown/></p>
-              </div>
+              {addPeople && <AddPeopleModal close={setAddPeople} />}
+            </div>
+            <div className={style.sprint}>
+              <p title='sprint'>Sprint <FaCaretDown /></p>
+            </div>
           </div>
         </div>
 
         <div className={style.todocon}>
           <div className={style.todobox}>
             <p className={style.flow}>TO DO</p>
-            <div className={style.taskbox}  draggable>
+            <div className={style.taskbox} onClick={toggleIssueModal} draggable>
               <div className={style.inner}><p>login</p> <HiDotsHorizontal /></div>
               <div className={style.inner}><p>PRJ-1</p> 
-              <div className={style.usname}>M</div></div>
+                <div className={style.usname}>M</div>
+              </div>
             </div>
 
-            <div className={style.taskbox}>
-              <div className={style.inner}><p>login</p> <HiDotsHorizontal /></div>
-              <div className={style.inner}><p>PRJ-1</p> 
-              <div className={style.usname}>M</div></div>
-            </div>
-            
-            
+            {issueModal && <IssueModal closeModal={setIssueModal} />}
           </div>
           <div droppable={true.toString()} className={style.todobox}>
             <p className={style.flow}>IN PROGRESS</p>
           </div>
           <div className={style.todobox}>
-            <p className={style.flow}>DONE <MdOutlineDone/></p>
+            <p className={style.flow}>DONE <MdOutlineDone /></p>
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default ProjectPage;
