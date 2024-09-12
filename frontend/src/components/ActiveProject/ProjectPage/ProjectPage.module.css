@@ -51,7 +51,11 @@
 .input{
   padding-left: 0.5rem;
   height: 35px;
-  width: 7rem;
+  width: 5rem;
+}
+
+.input:focus{
+  width: 10rem;
 }
 .ucon{
   display: flex;

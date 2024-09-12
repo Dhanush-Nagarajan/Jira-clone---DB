@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiFillThunderbolt } from "react-icons/ai";
 import { CiStar } from "react-icons/ci";
 import { IoShareSocialSharp } from "react-icons/io5";
@@ -7,11 +7,13 @@ import { TiUserAdd } from "react-icons/ti";
 import { FaCaretDown } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import style from './ProjectPage.module.css';
+import AddPeopleModal from './Modal/AddPeopleModal';
 
 const ProjectPage = () => {
-  
-  const handleOpenModal=()=>{
-    console.log('opened')
+  const [addPeople,setAddPeople] = useState(false)
+
+  const toggleModal=()=>{
+    setAddPeople(true)
   }
   return (
     <>
@@ -39,7 +41,8 @@ const ProjectPage = () => {
               <div className={style.ucon}>
                     <div className={style.usname}>M</div>
                     <div className={style.usname}>M</div>
-                    <div title='Add user' className={style.usname}><TiUserAdd/></div>
+                    <div title='Add user' className={style.usname} onClick={toggleModal}><TiUserAdd/></div>
+                    {addPeople && <AddPeopleModal close={setAddPeople}/>}
               </div>
               <div className={style.sprint}>
                 <p title='sprint'>Sprint <FaCaretDown/></p>
@@ -50,13 +53,13 @@ const ProjectPage = () => {
         <div className={style.todocon}>
           <div className={style.todobox}>
             <p className={style.flow}>TO DO</p>
-            <div className={style.taskbox} onClick={handleOpenModal} draggable>
+            <div className={style.taskbox}  draggable>
               <div className={style.inner}><p>login</p> <HiDotsHorizontal /></div>
               <div className={style.inner}><p>PRJ-1</p> 
               <div className={style.usname}>M</div></div>
             </div>
 
-            <div className={style.taskbox} onClick={handleOpenModal} draggable>
+            <div className={style.taskbox}>
               <div className={style.inner}><p>login</p> <HiDotsHorizontal /></div>
               <div className={style.inner}><p>PRJ-1</p> 
               <div className={style.usname}>M</div></div>
