@@ -13,6 +13,14 @@ import IssueModal from './Modal/IssueModal';
 const ProjectPage = () => {
   const [addPeople, setAddPeople] = useState(false);
   const [issueModal, setIssueModal] = useState(false);
+  const [draggedTaskId, setDraggedTaskId] = useState(null);
+
+  // Sample task data
+  const [tasks, setTasks] = useState([
+    { id: 1, title: 'Login', status: 'TODO', assignee: 'M', taskId: 'PRJ-1' },
+    { id: 2, title: 'Create dashboard', status: 'IN PROGRESS', assignee: 'A', taskId: 'PRJ-2' },
+    { id: 3, title: 'Deploy app', status: 'DONE', assignee: 'T', taskId: 'PRJ-3' },
+  ]);
 
   const toggleModal = () => {
     setAddPeople(true);
@@ -22,10 +30,35 @@ const ProjectPage = () => {
     setIssueModal(true);
   };
 
+  // Helper function to filter tasks by status
+  const filterTasksByStatus = (status) => {
+    return tasks.filter(task => task.status === status);
+  };
+
+  // Handle drag start
+  const handleDragStart = (taskId) => {
+    setDraggedTaskId(taskId);
+  };
+
+  // Handle drop
+  const handleDrop = (newStatus) => {
+    setTasks(prevTasks =>
+      prevTasks.map(task =>
+        task.id === draggedTaskId ? { ...task, status: newStatus } : task
+      )
+    );
+    setDraggedTaskId(null);
+  };
+
+  // Allow drag over for droppable areas
+  const allowDrop = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       <div className={style.body}>
-        <div>Projects / Projects1</div>
+        <div>Projects / Project 1</div>
 
         <div className={style.sprintcon}>
           <div>
@@ -58,22 +91,72 @@ const ProjectPage = () => {
         </div>
 
         <div className={style.todocon}>
-          <div className={style.todobox}>
+          {/* To Do Column */}
+          <div
+            className={style.todobox}
+            onDragOver={allowDrop}
+            onDrop={() => handleDrop('TODO')}
+          >
             <p className={style.flow}>TO DO</p>
-            <div className={style.taskbox} onClick={toggleIssueModal} draggable>
-              <div className={style.inner}><p>login</p> <HiDotsHorizontal /></div>
-              <div className={style.inner}><p>PRJ-1</p> 
-                <div className={style.usname}>M</div>
+            {filterTasksByStatus('TODO').map((task) => (
+              <div
+                key={task.id}
+                className={style.taskbox}
+                draggable
+                onDragStart={() => handleDragStart(task.id)}
+                onClick={toggleIssueModal}
+              >
+                <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
+                <div className={style.inner}><p>{task.taskId}</p>
+                  <div className={style.usname}>{task.assignee}</div>
+                </div>
               </div>
-            </div>
-
+            ))}
             {issueModal && <IssueModal closeModal={setIssueModal} />}
           </div>
-          <div droppable={true.toString()} className={style.todobox}>
+
+          {/* In Progress Column */}
+          <div
+            className={style.todobox}
+            onDragOver={allowDrop}
+            onDrop={() => handleDrop('IN PROGRESS')}
+          >
             <p className={style.flow}>IN PROGRESS</p>
+            {filterTasksByStatus('IN PROGRESS').map((task) => (
+              <div
+                key={task.id}
+                className={style.taskbox}
+                draggable
+                onDragStart={() => handleDragStart(task.id)}
+              >
+                <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
+                <div className={style.inner}><p>{task.taskId}</p>
+                  <div className={style.usname}>{task.assignee}</div>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className={style.todobox}>
+
+          {/* Done Column */}
+          <div
+            className={style.todobox}
+            onDragOver={allowDrop}
+            onDrop={() => handleDrop('DONE')}
+          >
             <p className={style.flow}>DONE <MdOutlineDone /></p>
+            {filterTasksByStatus('DONE').map((task) => (
+              <div
+                key={task.id}
+                className={style.taskbox}
+                draggable
+                onDragStart={() => handleDragStart(task.id)}
+              >
+                <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
+                <div className={style.inner}><p>{task.taskId}</p>
+                  <div className={style.usname}>{task.assignee}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
