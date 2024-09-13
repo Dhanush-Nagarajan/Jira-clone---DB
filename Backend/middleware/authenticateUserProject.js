@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/userModels.js';
 
-const protectRoute = async (req, res, next) => {
+const protectRoute1 = async (req, res, next) => {
 	try {
-	  const token = req.cookies.jwt;		
+	  const token = req.headers.authorization;		
   
 	  if (!token) {
 		return res.status(401).json({ error: "Unauthorized - No Token Provided" });
@@ -25,4 +25,4 @@ const protectRoute = async (req, res, next) => {
   };
 
 
-  export default protectRoute;
+  export default protectRoute1;
