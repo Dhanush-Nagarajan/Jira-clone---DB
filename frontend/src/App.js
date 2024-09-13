@@ -7,6 +7,7 @@ import Home from './components/HomePage/Home';
 import ActiveProject from './components/ActiveProject/ActiveProject';
 import CreateProject from './components/CreateProject/CreateProject';
 import Backlog from './components/ActiveProject/Backlog/Backlog';
+import Profile from './components/Profile/Profile';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
           <Route path='/create-project' element={<CreateProject/>}/>
           <Route path='/project' element={<ActiveProject/>}/>
           <Route path='/backlog' element={<Backlog/>}/>
-y
+          <Route path='/profile' element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   );

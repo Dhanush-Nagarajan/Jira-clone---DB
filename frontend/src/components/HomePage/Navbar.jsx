@@ -69,7 +69,7 @@ const Navbar = () => {
           </button>
           {isDropdownOpen && (
             <div className={styles.dropcontent}>
-              <p>Profile</p>
+              <p onClick={()=>navigate('/profile')}>Profile</p>
               <p onClick={handleLogout}>Logout</p>
             </div>
           )}
