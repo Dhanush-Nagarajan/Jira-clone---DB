@@ -30,17 +30,14 @@ const ProjectPage = () => {
     setIssueModal(true);
   };
 
-  // Helper function to filter tasks by status
   const filterTasksByStatus = (status) => {
     return tasks.filter(task => task.status === status);
   };
 
-  // Handle drag start
   const handleDragStart = (taskId) => {
     setDraggedTaskId(taskId);
   };
 
-  // Handle drop
   const handleDrop = (newStatus) => {
     setTasks(prevTasks =>
       prevTasks.map(task =>
@@ -50,7 +47,6 @@ const ProjectPage = () => {
     setDraggedTaskId(null);
   };
 
-  // Allow drag over for droppable areas
   const allowDrop = (event) => {
     event.preventDefault();
   };

@@ -46,8 +46,8 @@ const Navbar = () => {
     <>
       <div className={styles.header1}>
         <div className={styles.start1}>
-          <img className="logo" src={logo} alt="logo" />
-          <h2>JIRA</h2>
+          <img className="logo" src={logo} alt="logo"  onClick={()=>navigate('/home')}/>
+          <h2 onClick={()=>navigate('/home')}>JIRA</h2>
         </div>
 
         <div className={styles.features1}>
