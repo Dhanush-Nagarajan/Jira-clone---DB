@@ -7,10 +7,18 @@ import Navbar from '../HomePage/Navbar'
 const ActiveProject = () => {
   return (
     <>
-      <Navbar/>
-    <div className={style.page}>
-      <Sidebar/>
-      <ProjectPage/>
+    <div className={style.con}>
+      <div className={style.nav}>
+        <Navbar/>
+      </div>
+      <div className={style.page}>
+        <div>
+          <Sidebar/>
+        </div>
+        <div>
+          <ProjectPage/>
+        </div>
+      </div>
     </div>
     </>
   )

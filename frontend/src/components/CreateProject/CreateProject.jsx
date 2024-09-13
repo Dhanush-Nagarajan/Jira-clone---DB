@@ -6,7 +6,7 @@ import axios from 'axios';
 import { AuthContext } from '../../Context/AuthContext.jsx';
 
 const CreateProject = () => {
-  const { user } = useContext(AuthContext); 
+  const { token } = useContext(AuthContext); 
   const [Project_name, setProjectName] = useState('');
   const [Access, setAccess] = useState('Private');
   const [Key, setKey] = useState('');
@@ -36,7 +36,10 @@ const CreateProject = () => {
         Project_name,
         Access,
         Key,
-      }, {
+      },{
+        headers: {
+          Authorization: `${token}`,
+        },
         withCredentials: true,
       });
     
