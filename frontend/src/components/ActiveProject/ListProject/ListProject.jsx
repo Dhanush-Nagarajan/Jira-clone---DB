@@ -2,8 +2,11 @@ import React from 'react'
 import Navbar from '../../HomePage/Navbar';
 import style from './ListProject.module.css'
 import { HiDotsHorizontal } from "react-icons/hi";
+import { useNavigate } from 'react-router-dom';
 
 const ListProject = () => {
+
+  const navigate = useNavigate();
   return (
     <div className={style.con}>
       <div className={style.nav}>
@@ -14,7 +17,7 @@ const ListProject = () => {
         <div className={style.topcon}>
             <h2>Projects</h2>
           <div>
-            <button className={style.createButton}>Create Project</button>
+            <button className={style.createButton} onClick={()=>navigate('/create-project')}>Create Project</button>
           </div>
         </div>
 
@@ -33,7 +36,7 @@ const ListProject = () => {
 
           <div className={style.tablebcon}>
           <div className={style.probody}>
-            <p className={style.tablebo} >GOAT</p>
+            <p className={style.tablebo} onClick={()=>navigate('/project')} >GOAT</p>
             <p className={style.tableb}>GOT</p>
             <p className={style.tablebo}>ABC</p>
             <div>
