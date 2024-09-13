@@ -21,25 +21,21 @@ export const signup = async(req,res)=>{
         const salt = await bcrypt.genSalt(10);
         const hashpassword = await bcrypt.hash(password,salt);
 
-        const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${email}`;
 
         const newUser = new User({
             fullName,
             email,
             password: hashpassword,
-            profilePic:  boyProfilePic
         });
 
        if (newUser){
-        const token = generateTokenAndSetCookie(newUser._id, res);
+         generateTokenAndSetCookie(newUser._id, res);
         await newUser.save();
 
         res.status(201).json({
             _id: newUser._id,
             fullName: newUser.fullName,
             email: newUser.email,
-            profilePic: newUser.profilePic,
-            token
         });
        }
 
@@ -70,7 +66,6 @@ export const login = async(req,res)=>{
             _id: user._id,
             fullName: user.fullName,
             email: user.email,
-            profilePic: user.profilePic,
             token
         });
         

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FaArrowLeft } from "react-icons/fa";
 import style from './CreateProject.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../../Context/AuthContext.jsx';
 
 const CreateProject = () => {
+  const { token } = useContext(AuthContext); 
   const [Project_name, setProjectName] = useState('');
   const [Access, setAccess] = useState('Private');
   const [Key, setKey] = useState('');
@@ -14,45 +16,46 @@ const CreateProject = () => {
   useEffect(() => {
     if (Project_name.length >= 3) {
       setKey(Project_name.substring(0, 3).toUpperCase());
+      
     } else {
       setKey('');
     }
   }, [Project_name]);
 
-
   const handleCreate = async (e) => {
     e.preventDefault();
-
-
     setError('');
-
-
+    
     if (!Project_name || !Key) {
       setError('Please fill out all required fields.');
       return;
     }
-
+    
     try {
       const response = await axios.post('http://localhost:2000/api/projects/createproject', {
         Project_name,
         Access,
         Key,
       },{
+        headers: {
+          Authorization: `${token}`,
+        },
         withCredentials: true,
       });
-
+    
       if (response.status === 201) {
-
+        setError('');
         navigate('/project');
+        console.log('Project Created')
       } else {
         setError('Failed to create project. Please try again.');
       }
     } catch (error) {
-      console.error('Error creating project:', error);
+      console.error('Error creating project:', error.message);
       setError(error.response?.data?.error || 'An error occurred. Please try again later.');
     }
   };
-
+  
   return (
     <form onSubmit={handleCreate}>
       <div className={style.header}>
@@ -65,7 +68,10 @@ const CreateProject = () => {
         <div className={style.body}>
           <div className={style.innerbody}>
             <h1>Add Project Details</h1>
-            <p className={style.p}>Explore what's possible when you collaborate with your team. <br /> Edit project details anytime in project settings.</p>
+            <p className={style.p}>
+              Explore what's possible when you collaborate with your team. <br />
+              Edit project details anytime in project settings.
+            </p>
             <div className={style.projectdetails}>
               <label className={style.p}>Project Name</label>
               <input

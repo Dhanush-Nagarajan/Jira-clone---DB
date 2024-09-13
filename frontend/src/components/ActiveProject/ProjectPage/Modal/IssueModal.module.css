@@ -1,0 +1,121 @@
+.modalcon{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0, 0,0.3);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: auto;
+}
+
+.modal{
+  padding: 2rem;
+  height: 80%;
+  width: 80%;
+  background-color: white;  
+  border-radius: 5px;
+  display: flex;
+}
+
+.close{
+  height: 1.5rem;
+  width: 1.5rem;
+  text-align: center;
+  font-size: larger;
+  position: fixed;
+  top: 4.4rem;
+  left: 88%;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.close:hover{
+  background-color: gray;
+}
+
+.input{
+  height: 2rem;
+  width: 30%;
+  padding-left: 0.7rem;
+  border: none;
+  margin-top: 0.2rem;
+}
+
+.input:focus{
+  border: 2px solid gray;
+}
+
+.submit{
+  border: 0;
+  background-color: blue;
+  color: white;
+  width: 4rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.usname{
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  background-color: grey;
+  color: white;
+  font-size: large;
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.commentip{
+  height: 2rem;
+  width: 25%;
+  padding-left: 1rem;
+}
+
+.addcomment{
+  display: flex;
+  gap: 1rem;
+}
+
+.vucomment{
+  width: 40rem;
+  min-height: 4rem;
+  display: flex;
+  gap: 1rem;
+
+}
+
+.cbox{
+  height: 15rem;
+  width: 90%;
+  overflow:scroll;
+}
+.tablebox{
+  height: 100%;
+  width: 100%;
+}
+
+.detail{
+  height: 3.2rem;
+  width: 100%;
+  text-align: center;
+  align-content: center;
+  border: 2px solid gray;
+}
+
+.tablecontent{
+  margin: 2rem 1rem;
+}
+.tableboxbottom{
+  height: 90%;
+  border: 0px;
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  border-left: 2px;
+  border-right: 2px;
+  border-bottom: 2px;
+  border-style: solid;
+  border-color: gray;  
+}
