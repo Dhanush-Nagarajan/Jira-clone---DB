@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './Body.module.css'
-import CreateProject from '../CreateProject/CreateProject'
+import { useNavigate } from 'react-router-dom';
 
 const Body = () => {
+  const navigate = useNavigate();
   return (
     <>
     <div className={styles.home}>
@@ -11,8 +12,7 @@ const Body = () => {
         <hr className={styles.hr}/>
       </div>
       <div className={styles.body}>
-        <p className={styles.bp}>You have no recent projects</p>
-        <button className={styles.bb}>View all projects</button>
+        <button className={styles.bb} onClick={()=>navigate('/project-list')}>View all projects</button>
       </div>
       <div>
       <div>

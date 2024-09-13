@@ -1,0 +1,82 @@
+.con{
+  height: 100%;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav{
+  height: 10vh;
+}
+.body{
+  height: 90vh;
+  width: 100%;
+  padding: 2rem;
+}
+
+.topcon{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.createButton{
+  border: 0;
+  height: 2rem;
+  width: 8rem;
+  color: white;
+  background-color: blue;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ip{
+  margin-top: 1.5rem;
+  padding-left: 0.5rem;
+  border: none;
+  height: 2.5rem;
+  width: 16rem;
+  border: 1px solid grey;
+}
+
+.procon{
+  margin-top: 2rem;
+  min-height: 7rem;
+}
+
+.tablebcon{
+  margin-top: 0.5rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.prohead{
+  display: flex;
+  justify-content: space-between;
+  font-weight: bolder;
+  color: rgb(44, 44, 44);
+}
+
+.probody{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.tableb{
+  height: 2rem;
+  width: 7rem;
+  align-content: center;
+}
+.tablebo{
+  height: 2rem;
+  width: 7rem;
+  align-content: center;
+  cursor: pointer;
+  color: blue;
+}
+
+.tablebo:hover{
+  text-decoration: underline;
+}
