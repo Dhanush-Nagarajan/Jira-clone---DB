@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoShareSocialSharp } from "react-icons/io5";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { TiUserAdd } from "react-icons/ti";
 import { FaCaretDown } from "react-icons/fa";
-
 import Sidebar from '../Sidebar/Sidebar'
 import style from './Backlog.module.css'
 import Navbar from '../../HomePage/Navbar'
+import AddPeopleModal from '../ProjectPage/Modal/AddPeopleModal.jsx';
+
+
 
 const Backlog = () => {
+  const [addPeople, setAddPeople] = useState(false);
+
+  const toggleModal = () => {
+    setAddPeople(true);
+  };
   return (
     <>
       <Navbar/>
@@ -35,7 +42,8 @@ const Backlog = () => {
           <input className={style.search1}  type='search' placeholder='Search'/> 
           <button className={style.user}>D</button>
           <button className={style.user}>M</button>
-          <div title='Add user' className={style.usname}><TiUserAdd/></div>
+          <div title='Add user' className={style.usname} onClick={toggleModal}><TiUserAdd/></div>
+          {addPeople && <AddPeopleModal close={setAddPeople} />}
         </div>
 
         <div className={style.down}>
