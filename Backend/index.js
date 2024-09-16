@@ -26,6 +26,8 @@ app.use(cors(corsOptions));
 app.use ("/api/auth", authRoutes);
 app.use ("/api/projects", ProjectRoutes);
 app.use ("/api/projects", addUser);
+app.use ("/api/projects", ProjectRoutes);
+
 
 app.listen(PORT, () => {
     connectToMongoDB();
