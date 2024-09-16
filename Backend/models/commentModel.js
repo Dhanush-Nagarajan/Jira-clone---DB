@@ -8,7 +8,7 @@ const commentSchema = new mongoose.Schema({
   },
   comment:{
     type: String,
-    required: true,
+   required: true,
   }
 })
 const Comment= mongoose.model("Comment",commentSchema)
