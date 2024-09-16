@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const commentSchema = new mongoose.Schema({
-  user:{
-    type:mongoose.Schema.ObjectId,
-    ref:"User",
-    //required:true,
+  createdBy:{
+    type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		required: true,
   },
   comment:{
     type: String,
-   required: true,
+    required: true,
   }
 })
 const Comment= mongoose.model("Comment",commentSchema)
