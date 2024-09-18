@@ -1,5 +1,4 @@
 import Project from "../models/projectModels.js";
-import Team from "../models/projectModels.js";
 import User from "../models/userModels.js";
 
 export const addMember = async (req, res) => {
