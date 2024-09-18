@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProjectList } from '../../../redux/actions/projectActions.js';
 import Navbar from '../../HomePage/Navbar';
@@ -10,12 +10,21 @@ const ListProject = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  // Access data from the Redux store
   const { projects, loading, error } = useSelector((state) => state.projects);
+  const [activeDropdown, setActiveDropdown] = useState(null); // For managing which project's dropdown is active
 
   useEffect(() => {
     dispatch(fetchProjectList());
   }, [dispatch]);
+
+  const handleToggleDropdown = (projectId) => {
+    setActiveDropdown(activeDropdown === projectId ? null : projectId);
+  };
+
+  const deleteProject = (projectId) => {
+    // Logic to delete the project (e.g., dispatch an action to delete it from backend)
+    console.log("Deleting project with ID:", projectId);
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -49,12 +58,21 @@ const ListProject = () => {
 
           <div className={style.tablebcon}>
             {projects.map((project) => (
-              <div key={project.id} className={style.probody}>
-                <p className={style.tablebo} onClick={() => navigate(`/project/${project.id}`)}>{project.name}</p>
-                <p className={style.tableb}>{project.key}</p>
+              <div className={style.probody} key={project._id}>
+                <p className={style.tablebo} onClick={() => navigate('/project')}>{project.Project_name}</p>
+                <p className={style.tableb}>{project.id}</p>
                 <p className={style.tablebo}>{project.lead}</p>
-                <div>
-                  <HiDotsHorizontal className={style.tableb} />
+
+                <div className={style.moreActions}>
+                  <HiDotsHorizontal 
+                    className={style.tableb}
+                    onClick={() => handleToggleDropdown(project._id)} 
+                  />
+                  {activeDropdown === project._id && (
+                    <div className={style.dropdown}>
+                      <p onClick={() => deleteProject(project._id)}>Delete</p>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
