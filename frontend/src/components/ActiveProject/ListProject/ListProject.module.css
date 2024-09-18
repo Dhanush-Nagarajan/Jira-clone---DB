@@ -97,11 +97,18 @@
 
 .dropdown p {
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 1x 1px;
   margin: 0;
   transition: background-color 0.2s;
 }
 
 .dropdown p:hover {
   background-color: #f0f0f0;
+}
+
+.noProjects {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 18px;
+  color: #666;
 }
