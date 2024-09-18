@@ -8,6 +8,10 @@
     border-bottom: 2px solid rgb(226, 226, 226);
 }
 
+.logo{
+    cursor: pointer;
+}
+
 .start1 {
     display: flex;
     align-items: center;
