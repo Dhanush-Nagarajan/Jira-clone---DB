@@ -1,9 +1,12 @@
 import Project from "../models/projectModels.js";
 import Team from "../models/teamModel.js";
+// import Team from "../models/teamModel.js";
 export const createProject = async (req, res) => {
   try {
     const { Project_name, Access, Key } = req.body;
     const createdBy = req.user._id;
+    // const username = req.user.fullName; 
+    // console.log(username)
 
     const existingProject = await Project.findOne({ Project_name });
     if (existingProject) {

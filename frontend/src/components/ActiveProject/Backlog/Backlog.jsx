@@ -7,15 +7,24 @@ import Sidebar from '../Sidebar/Sidebar'
 import style from './Backlog.module.css'
 import Navbar from '../../HomePage/Navbar'
 import AddPeopleModal from '../ProjectPage/Modal/AddPeopleModal.jsx';
+import CreateSprintModal from '../ProjectPage/Modal/CreateSprintModal.jsx';
+
+
 
 
 
 const Backlog = () => {
   const [addPeople, setAddPeople] = useState(false);
+  const [createSprint,setCreateSprint] = useState(false);
 
   const toggleModal = () => {
     setAddPeople(true);
   };
+
+  const toggleCreateModal = () => {
+    setCreateSprint(true);
+  };
+
   return (
     <>
       <Navbar/>
@@ -48,7 +57,9 @@ const Backlog = () => {
 
         <div className={style.down}>
           <p className={style.down1}>Backlog <FaCaretDown/>  </p>
-          <span className={style.create}>Create sprint</span>
+          
+          <span className={style.create}  onClick={toggleCreateModal}>Create sprint</span>
+          {createSprint && <CreateSprintModal close={setCreateSprint} />}
         </div> 
 
         

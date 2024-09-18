@@ -1,0 +1,87 @@
+.Modal{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Modal1{
+    height: 450px;
+    width: 500px;
+    padding: 1rem 1.2rem;
+    background-color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+  }
+  
+  .h{
+    color: rgb(85, 84, 84);
+    margin-bottom: 0.5rem;
+  }
+
+  .inp{
+    height: 2.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 5px;
+  }
+  
+  .opt{
+    height: 2.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 5px;
+  }
+  
+  
+  
+  .button{
+    width: 100%;
+    text-align: end;
+  }
+  
+  .cancel{
+    height: 2rem;
+    width: 4rem;
+    border: none;
+    margin-right: 10px;
+    background-color: white;
+    cursor: pointer;
+    
+  }
+  
+  .cancel:hover{
+    background-color: rgb(202, 201, 201);
+    border-radius: 5px;
+  }
+  
+  .start{
+    height: 2rem;
+    width: 5rem;
+    border: none;
+    color: white;
+    background-color: #0052CC;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .start:hover{
+    background-color: #0546a8;
+  }
+
+  .desc{
+    height: 9rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 5px;
+  }

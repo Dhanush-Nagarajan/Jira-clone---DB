@@ -64,7 +64,11 @@
   width: 3rem;
   border: none;
   color: white;
-  background-color: blue;
+  background-color: #0052CC;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.buttonadd:hover{
+  background-color: #0546a8;
 }

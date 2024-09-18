@@ -17,7 +17,7 @@ const ProjectPage = () => {
 
   // Sample task data
   const [tasks, setTasks] = useState([
-    { id: 1, title: 'Login', status: 'TODO', assignee: 'M', taskId: 'PRJ-1' },
+    { id: 1, title: 'Login', status: 'TODO', assignee: 'S', taskId: 'PRJ-1' },
     { id: 2, title: 'Create dashboard', status: 'IN PROGRESS', assignee: 'A', taskId: 'PRJ-2' },
     { id: 3, title: 'Deploy app', status: 'DONE', assignee: 'T', taskId: 'PRJ-3' },
   ]);

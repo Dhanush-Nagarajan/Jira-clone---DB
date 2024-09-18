@@ -6,6 +6,7 @@ dotenv.config();
 import connectToMongoDB from './db/connectToMongoDB.js';
 import authRoutes from "./routes/authRoutes.js"
 import ProjectRoutes from "./routes/projectRoutes.js"
+import commentRoutes from "./routes/commentRoutes.js"
 import addUser from "./routes/addMemberRoutes.js"
 import getUsers from "./routes/userRoutes.js";
 
@@ -27,6 +28,8 @@ app.use(cors(corsOptions));
 app.use ("/api/auth", authRoutes);
 app.use ("/api/projects", ProjectRoutes);
 app.use ("/api/projects", addUser);
+app.use ("/api/projects", commentRoutes);
+
 app.use ("/api/projects", getUsers);
 
 app.listen(PORT, () => {
