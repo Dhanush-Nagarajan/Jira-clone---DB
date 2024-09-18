@@ -5,7 +5,7 @@ import { GetProjectForUser } from '../controllers/getProjectController.js';
 import { getLead } from '../controllers/getLeadController.js';
 
 const router = express.Router();
-router.get("/getusers",protectRoute,getUsersForProject);
+router.get("/getusers/:ProjectID",protectRoute,getUsersForProject);
 router.get("/getprojects",protectRoute,GetProjectForUser);
 router.get("/getlead/:userID",protectRoute,getLead);
 
