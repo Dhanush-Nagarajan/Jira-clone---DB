@@ -1,29 +1,29 @@
-import Team from "../models/teamModel.js";
+import Project from "../models/projectModels.js";
 import User from "../models/userModels.js";
 
 export const addMember = async (req, res) => {
   try {
-    const { projectId, newUserId } = req.params; 
+    const { projectId,newUserId } = req.params; 
 
     const user = await User.findById(newUserId);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    const team = await Team.findOne({ Project: projectId });
-    if (!team) {
-      return res.status(404).json({ error: "Team not found for this project" });
+    const project = await Project.findById(projectId);
+    if (!project) {
+      return res.status(404).json({ error: "Project does not exist!" });
     }
 
-    if (team.participants.includes(newUserId)) {
+    if (project.participants.includes(newUserId)) {
       return res.status(400).json({ error: "User is already a member of this project" });
     }
 
-    team.participants.push(newUserId);
+    project.participants.push(newUserId);
 
-    await team.save();
+    await project.save();
 
-    res.status(200).json({ message: "User added successfully", team });
+    res.status(200).json({ message: "User added successfully"});
   } catch (error) {
     console.log("Error in addMember controller:", error.message);
     res.status(500).json({ error: "Internal server error" });
