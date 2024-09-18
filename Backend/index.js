@@ -29,7 +29,6 @@ app.use ("/api/auth", authRoutes);
 app.use ("/api/projects", ProjectRoutes);
 app.use ("/api/projects", addUser);
 app.use ("/api/projects", commentRoutes);
-
 app.use ("/api/projects", getUsers);
 
 app.listen(PORT, () => {
