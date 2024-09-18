@@ -1,12 +1,9 @@
 import Project from "../models/projectModels.js";
-import Team from "../models/teamModel.js";
-// import Team from "../models/teamModel.js";
 export const createProject = async (req, res) => {
   try {
     const { Project_name, Access, Key } = req.body;
     const createdBy = req.user._id;
-    // const username = req.user.fullName; 
-    // console.log(username)
+    
 
     const existingProject = await Project.findOne({ Project_name });
     if (existingProject) {
@@ -18,14 +15,10 @@ export const createProject = async (req, res) => {
       Access,
       Key,
       createdBy,
+      participants: [createdBy]
     });
     await newProject.save();
-    const newTeam = new Team({
-      Project: newProject._id,
-      participants: [createdBy],
-    });
-    await newTeam.save();
-    res.status(201).json({ project: newProject, team: newTeam });
+    res.status(201).json({ project: newProject});
   } catch (error) {
     console.log("Error in createProject controller:", error.message);
     res.status(500).json({ error: "Internal server error" });
