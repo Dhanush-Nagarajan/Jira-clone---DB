@@ -80,3 +80,28 @@
 .tablebo:hover{
   text-decoration: underline;
 }
+
+.moreActions {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 1000;
+}
+
+.dropdown p {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0;
+  transition: background-color 0.2s;
+}
+
+.dropdown p:hover {
+  background-color: #f0f0f0;
+}
