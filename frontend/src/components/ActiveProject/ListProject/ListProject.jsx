@@ -100,6 +100,7 @@ const ListProject = () => {
                     {activeDropdown === project._id && (
                       <div className={style.dropdown}>
                         <p onClick={() => deleteProject(project._id)}>Delete</p>
+                        <p>Edit</p>
                       </div>
                     )}
                   </div>
