@@ -93,6 +93,11 @@
   border: 1px solid #ccc;
   padding: 5px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  box-shadow: #666;
+  border-radius: 1px;
 }
 
 .dropdown p {
