@@ -45,10 +45,11 @@
 
 .tablebcon{
   margin-top: 0.5rem;
-  height: 2rem;
+  height: 3rem;
   display: flex;
   flex-direction: column;
   align-content: center;
+  justify-content: center;
 }
 
 .prohead{
@@ -61,16 +62,17 @@
 .probody{
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
 
 .tableb{
-  height: 2rem;
+  height: 1rem;
   width: 7rem;
   align-content: center;
 }
 .tablebo{
-  height: 2rem;
+  height: 1rem;
   width: 7rem;
   align-content: center;
   cursor: pointer;
@@ -82,7 +84,7 @@
 }
 
 .moreActions {
-  position: relative;
+  position: relative;  
 }
 
 .dropdown {

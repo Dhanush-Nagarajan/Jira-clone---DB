@@ -10,12 +10,13 @@ import { useNavigate } from 'react-router-dom';
 const ListProject = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const { projects, loading, error } = useSelector((state) => state.projects);
   const { lead, leadLoading, leadError } = useSelector((state) => state.lead); // Access lead state
-  
+
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [leadNames, setLeadNames] = useState({}); // State to store lead names by ID
+  const [searchTerm, setSearchTerm] = useState(''); // State to hold search term
 
   useEffect(() => {
     dispatch(fetchProjectList());
@@ -52,6 +53,14 @@ const ListProject = () => {
     dispatch(deleteProjectById(projectId));
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value); // Update search term based on input
+  };
+
+  const filteredProjects = projects.filter((project) =>
+    project.Project_name.toLowerCase().includes(searchTerm.toLowerCase()) // Filter based on project name
+  );
+
   if (loading || leadLoading) return <p>Loading...</p>;
   if (error || leadError) return <p>Error: {error || leadError}</p>;
 
@@ -70,7 +79,13 @@ const ListProject = () => {
         </div>
 
         <div>
-          <input type="text" placeholder='Search projects..' className={style.ip} />
+          <input
+            type="text"
+            placeholder='Search projects...'
+            className={style.ip}
+            value={searchTerm}
+            onChange={handleSearchChange} // Update search term on input change
+          />
         </div>
 
         <div className={style.procon}>
@@ -82,13 +97,13 @@ const ListProject = () => {
           </div>
           <hr />
 
-          {projects.length === 0 ? (
+          {filteredProjects.length === 0 ? (
             <p className={style.noProjects}>No available projects</p>
           ) : (
             <div className={style.tablebcon}>
-              {projects.map((project) => (
+              {filteredProjects.map((project) => (
                 <div className={style.probody} key={project._id}>
-                  <p className={style.tablebo} onClick={() => navigate('/project')}>{project.Project_name}</p>
+                  <p className={style.tablebo} onClick={() => navigate(`/project/${project._id}`)}>{project.Project_name}</p>
                   <p className={style.tableb}>{project.Key}</p>
                   <p className={style.tablebo}>{leadNames[project.createdBy] || 'Loading...'}</p> {/* Display lead name */}
 
@@ -106,9 +121,10 @@ const ListProject = () => {
                   </div>
                 </div>
               ))}
-              <hr />
+            <hr />
             </div>
           )}
+
         </div>
       </div>
     </div>
