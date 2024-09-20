@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProjectList, deleteProjectById } from '../../../redux/actions/projectActions.js';
+import { fetchProjectList, deleteProjectById } from '../../../redux/actions/projectActions';
 import { fetchLeadById } from '../../../redux/actions/leadActions'; // Import fetchLeadById action
 import Navbar from '../../HomePage/Navbar';
 import style from './ListProject.module.css';
 import { HiDotsHorizontal } from "react-icons/hi";
 import { useNavigate } from 'react-router-dom';
+import { useProjectContext } from '../../../Context/ProjectContext'
 
 const ListProject = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { fetchProjectDetails } = useProjectContext();
+
+  const handleProjectClick = (projectId) => {
+    fetchProjectDetails(projectId);
+    navigate('/project');
+  };
+  
   const { projects, loading, error } = useSelector((state) => state.projects);
   const { lead, leadLoading, leadError } = useSelector((state) => state.lead); // Access lead state
-
+  
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [leadNames, setLeadNames] = useState({}); // State to store lead names by ID
-  const [searchTerm, setSearchTerm] = useState(''); // State to hold search term
 
   useEffect(() => {
     dispatch(fetchProjectList());
@@ -53,14 +60,6 @@ const ListProject = () => {
     dispatch(deleteProjectById(projectId));
   };
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value); // Update search term based on input
-  };
-
-  const filteredProjects = projects.filter((project) =>
-    project.Project_name.toLowerCase().includes(searchTerm.toLowerCase()) // Filter based on project name
-  );
-
   if (loading || leadLoading) return <p>Loading...</p>;
   if (error || leadError) return <p>Error: {error || leadError}</p>;
 
@@ -79,13 +78,7 @@ const ListProject = () => {
         </div>
 
         <div>
-          <input
-            type="text"
-            placeholder='Search projects...'
-            className={style.ip}
-            value={searchTerm}
-            onChange={handleSearchChange} // Update search term on input change
-          />
+          <input type="text" placeholder='Search projects..' className={style.ip} />
         </div>
 
         <div className={style.procon}>
@@ -97,13 +90,13 @@ const ListProject = () => {
           </div>
           <hr />
 
-          {filteredProjects.length === 0 ? (
+          {projects.length === 0 ? (
             <p className={style.noProjects}>No available projects</p>
           ) : (
             <div className={style.tablebcon}>
-              {filteredProjects.map((project) => (
+              {projects.map((project) => (
                 <div className={style.probody} key={project._id}>
-                  <p className={style.tablebo} onClick={() => navigate(`/project/${project._id}`)}>{project.Project_name}</p>
+                  <p className={style.tablebo} onClick={() => handleProjectClick(project._id)}>{project.Project_name}</p>
                   <p className={style.tableb}>{project.Key}</p>
                   <p className={style.tablebo}>{leadNames[project.createdBy] || 'Loading...'}</p> {/* Display lead name */}
 
@@ -115,16 +108,14 @@ const ListProject = () => {
                     {activeDropdown === project._id && (
                       <div className={style.dropdown}>
                         <p onClick={() => deleteProject(project._id)}>Delete</p>
-                        <p>Edit</p>
                       </div>
                     )}
                   </div>
                 </div>
               ))}
-            <hr />
+              <hr />
             </div>
           )}
-
         </div>
       </div>
     </div>
