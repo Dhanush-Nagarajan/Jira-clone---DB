@@ -1,4 +1,4 @@
-.Modal{
+.Modal {
   position: fixed;
   top: 0%;
   left: 0%;
@@ -10,23 +10,23 @@
   align-items: center;
 }
 
-.Modalcon{
-  height: 350px;
+.Modalcon {
+  min-height: 350px;
   width: 350px;
   padding: 1rem 1.2rem;
-  background-color:white;
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 5px;
 }
 
-.h3{
+.h3 {
   color: rgb(85, 84, 84);
   margin-bottom: 0.5rem;
 }
 
-.ip{
+.ip {
   height: 2.5rem;
   width: 100%;
   margin-top: 0.5rem;
@@ -34,18 +34,18 @@
   padding-left: 5px;
 }
 
-.ipfont{
+.ipfont {
   font-size: small;
   font-weight: 500;
   color: grey;
 }
 
-.button{
+.button {
   width: 100%;
   text-align: end;
 }
 
-.buttoncancel{
+.buttoncancel {
   height: 2rem;
   width: 4rem;
   border: none;
@@ -54,12 +54,12 @@
   cursor: pointer;
 }
 
-.buttoncancel:hover{
+.buttoncancel:hover {
   background-color: rgb(202, 201, 201);
   border-radius: 5px;
 }
 
-.buttonadd{
+.buttonadd {
   height: 2rem;
   width: 3rem;
   border: none;
@@ -69,7 +69,7 @@
   cursor: pointer;
 }
 
-.buttonadd:hover{
+.buttonadd:hover {
   background-color: #0546a8;
 }
 
@@ -89,4 +89,43 @@
 
 .suggestionItem:hover {
   background-color: #f0f0f0;
+}
+
+/* New styles for selected emails display */
+.selectedEmails {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.selectedEmails h4 {
+  margin: 0;
+  color: #333;
+}
+
+.selectedEmails ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.selectedEmails li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  font-size: small;
+}
+
+.removeButton:hover {
+  text-decoration: underline;
 }

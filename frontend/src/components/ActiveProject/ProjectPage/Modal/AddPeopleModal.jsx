@@ -5,24 +5,26 @@ import { useProjectContext } from '../../../../Context/ProjectContext';
 
 const AddPeopleModal = ({ close, updateUsers }) => {
   const [email, setEmail] = useState('');
+  const [selectedUsers, setSelectedUsers] = useState([]); // Store selected user objects (id and email)
   const [message, setMessage] = useState('');
-  const [users, setUsers] = useState([]); // State to track all users
-  const [filteredUsers, setFilteredUsers] = useState([]); // State to track filtered users based on search input
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
   const { projectDetails } = useProjectContext();
   const projectId = projectDetails?._id;
   const token = localStorage.getItem('token');
 
-  // Fetch users initially when the modal is opened
+  // Fetch users when the modal is opened
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(`http://localhost:2000/api/projects/getusers/${projectId}`, {
           headers: {
-            Authorization: `${token}`, // Ensure Bearer token format
+            Authorization: `${token}`,
           },
         });
-        setUsers(response.data); // Store all users
+        setUsers(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error('Failed to fetch users:', error);
       }
@@ -38,39 +40,56 @@ const AddPeopleModal = ({ close, updateUsers }) => {
     if (email) {
       setFilteredUsers(users.filter(user => user.email.toLowerCase().includes(email.toLowerCase())));
     } else {
-      setFilteredUsers([]); // Clear the suggestions if no input
+      setFilteredUsers([]);
     }
   }, [email, users]);
 
-  const handleInvite = async (e) => {
+  // Handle selecting a user email from the filtered list
+  const handleSelectEmail = (user) => {
+    const { _id, email } = user;
+    // Add the selected user object (ID and email)
+    if (!selectedUsers.find((u) => u._id === _id)) {
+      setSelectedUsers((prev) => [...prev, { _id, email }]);
+    }
+    setEmail('');
+    setFilteredUsers([]);
+  };
+
+  const handleRemoveEmail = (userIdToRemove) => {
+    setSelectedUsers(selectedUsers.filter((user) => user._id !== userIdToRemove));
+  };
+
+  const handleAddUser = async (e) => {
     e.preventDefault();
+
+    const selectedUserIds = selectedUsers.map((user) => user._id); // Extract IDs from selected users
+
+    // Log selected user IDs and projectId to the console
+    console.log('Selected User IDs:', selectedUserIds);
+    console.log('Project ID:', projectId);
+
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:3000/api/send-invite',
+        `http://localhost:2000/api/projects/add/${projectId}/${selectedUserIds}`,
         {
-          email,
-          projectId, // Ensure the project ID is included in the invite request
-        },
-        {
+
           headers: {
-            Authorization: `Bearer ${token}`, // Ensure the token is sent
+            Authorization: `${token}`,
           },
         }
       );
+      
 
       if (response.status === 200) {
-        setMessage('Invitation sent successfully!');
-        setEmail('');
-
-        // Add the new user to the users array
-        setUsers((prevUsers) => [...prevUsers, { email }]);
-
-        // Call the parent component function to update the list
-        updateUsers(email);
+        setMessage('Users added successfully!');
+        updateUsers(selectedUsers); // Update the user list in the parent component
+        setSelectedUsers([]); // Clear the selected users
       } else {
-        setMessage('Failed to send the invitation.');
+        setMessage('Failed to add users.');
       }
     } catch (error) {
+      console.error('Error adding users:', error);
       setMessage('An error occurred. Please try again later.');
     }
   };
@@ -85,7 +104,7 @@ const AddPeopleModal = ({ close, updateUsers }) => {
     <div className={Style.Modal} onClick={handleOverlayClick}>
       <div className={Style.Modalcon}>
         <div>
-          <h3 className={Style.h3}>Add People to project</h3>
+          <h3 className={Style.h3}>Add People to Project</h3>
 
           <div className={Style.ipfont}>
             <label>Email</label> <br />
@@ -97,14 +116,13 @@ const AddPeopleModal = ({ close, updateUsers }) => {
               required
               className={Style.ip}
             />
-            {/* Show filtered users as suggestions below the input */}
             {filteredUsers.length > 0 && (
               <ul className={Style.suggestions}>
                 {filteredUsers.map((user) => (
                   <li
                     key={user._id}
                     className={Style.suggestionItem}
-                    onClick={() => setEmail(user.email)} // Set the clicked email in the input
+                    onClick={() => handleSelectEmail(user)}
                   >
                     {user.email}
                   </li>
@@ -122,18 +140,32 @@ const AddPeopleModal = ({ close, updateUsers }) => {
           </div>
         </div>
 
+        {selectedUsers.length > 0 && (
+          <div className={Style.selectedEmails}>
+            <h4>Selected Users:</h4>
+            <ul>
+              {selectedUsers.map((user) => (
+                <li key={user._id}>
+                  {user.email}
+                  <button onClick={() => handleRemoveEmail(user._id)} className={Style.removeButton}>
+                    Remove
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className={Style.button}>
           <button className={Style.buttoncancel} onClick={() => close(false)}>
             Cancel
           </button>
-          <button onClick={handleInvite} className={Style.buttonadd}>
+          <button onClick={handleAddUser} className={Style.buttonadd} disabled={selectedUsers.length === 0}>
             Add
           </button>
         </div>
 
         {message && <p>{message}</p>}
-        {/* Display the number of users */}
-        <p>Number of users in the project: {users.length}</p>
       </div>
     </div>
   );
