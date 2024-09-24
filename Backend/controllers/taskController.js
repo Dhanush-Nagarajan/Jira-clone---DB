@@ -5,7 +5,7 @@ import Project from "../models/projectModels.js";
 export const addTask = async (req,res)=>{
     const {ProjectID,UserID} = req.params;  
     const assignedBy = req.user._id;
-    const {issue,status} = req.body;
+    const {issue} = req.body;
 
     try {
         const user = await User.findById(UserID);
@@ -19,7 +19,7 @@ export const addTask = async (req,res)=>{
         const newtask = new Task({
             Project_ID : ProjectID,
             issue,
-            status,
+            status:"To-Do",
             assignedBy,
             assignedTo : UserID
         });
