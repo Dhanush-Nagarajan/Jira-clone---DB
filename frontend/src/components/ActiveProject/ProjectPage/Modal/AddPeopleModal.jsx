@@ -84,7 +84,12 @@ const AddPeopleModal = ({ close, updateUsers }) => {
   
       if (response.status === 200) {
         setMessage('Users added successfully!');
-        updateUsers(selectedUsers); // Update the user list in the parent component
+        
+        // Update the user list in the parent component if the function is provided
+        if (typeof updateUsers === 'function') {
+          updateUsers(selectedUsers); // Update the user list in the parent component
+        }
+        
         setSelectedUsers([]); // Clear the selected users
       } else {
         setMessage('Failed to add users.');
@@ -94,6 +99,7 @@ const AddPeopleModal = ({ close, updateUsers }) => {
       setMessage('An error occurred. Please try again later.');
     }
   };
+  
   
   const handleOverlayClick = (e) => {
     if (e.target.className === Style.Modal) {

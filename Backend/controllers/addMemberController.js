@@ -3,18 +3,16 @@ import User from "../models/userModels.js";
 
 export const addMember = async (req, res) => {
   try {
-    const { projectId, newUserIds } = req.params;  // projectId and newUserIds are from the URL
-    
-    // Split newUserIds if it's sent as a comma-separated string
-    const userIdsArray = newUserIds.split(',');
+    const { projectId } = req.params;  // projectId comes from the URL
+    const { userIds } = req.body;  // userIds is an array sent in the request body
 
-    if (userIdsArray.length === 0) {
+    if (!Array.isArray(userIds) || userIds.length === 0) {
       return res.status(400).json({ error: "No user IDs provided" });
     }
 
-    // Verify if all user IDs in the userIdsArray exist
-    const users = await User.find({ _id: { $in: userIdsArray } });
-    if (users.length !== userIdsArray.length) {
+    // Verify if all user IDs in the userIds array exist
+    const users = await User.find({ _id: { $in: userIds } });
+    if (users.length !== userIds.length) {
       return res.status(404).json({ error: "Some users not found" });
     }
 
@@ -24,7 +22,7 @@ export const addMember = async (req, res) => {
     }
 
     // Filter out users who are already participants
-    const nonParticipants = userIdsArray.filter(userId => !project.participants.includes(userId));
+    const nonParticipants = userIds.filter(userId => !project.participants.includes(userId));
 
     // If all users are already participants, return an appropriate response
     if (nonParticipants.length === 0) {
