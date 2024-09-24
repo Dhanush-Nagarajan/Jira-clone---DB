@@ -11,13 +11,19 @@ export const getUsersForProject = async (req, res) => {
       return res.status(404).json({ error: "Project not found" });
     }
 
-    const projectParticipants = project.participants; 
+    const projectParticipants = project.participants;
 
-    const filteredUsers = await User.find({
-      _id: { $nin: [loggedInUserID, ...projectParticipants] },
-    }).select("-password");
+    if(projectParticipants[0].equals(loggedInUserID)){
+      const filteredUsers = await User.find({
+        _id: { $nin: [loggedInUserID, ...projectParticipants] },
+      }).select("-password");
+  
+      res.status(200).json(filteredUsers);
+    }
 
-    res.status(200).json(filteredUsers);
+    else{
+      return res.status(500).json({error:"You are not an admin for this project!"})
+    }
   } catch (error) {
     console.log("Error in getFilteredUsers:", error.message);
     res.status(500).json({ error: "Internal server error" });

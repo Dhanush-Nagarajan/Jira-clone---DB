@@ -4,6 +4,6 @@ import { addMember } from '../controllers/addMemberController.js';
 
 const router = express.Router();
 
-router.post("/add/:projectId/:newUserId", protectRoute, addMember);
+router.post("/add/:projectId", protectRoute, addMember);
 
 export default router;

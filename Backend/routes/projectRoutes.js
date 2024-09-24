@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post("/createproject",protectRoute,createProject);
 router.delete("/deleteproject/:projectId",protectRoute,deleteProject);
-router.post("/addtask/:ProjectID/:UserID",protectRoute,addTask);
+router.post("/addtask/:ProjectID",protectRoute,addTask);
 router.get("/getprojectdetails/:ProjectID",protectRoute,getProjectDetails);
 
 export default router;

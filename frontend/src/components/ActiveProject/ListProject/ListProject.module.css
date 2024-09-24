@@ -41,11 +41,12 @@
 .procon{
   margin-top: 2rem;
   min-height: 7rem;
+
 }
 
 .tablebcon{
   margin-top: 0.5rem;
-  height: 3rem;
+  min-height: 1.5rem;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -53,27 +54,45 @@
 }
 
 .prohead{
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  font-size: 16px;
+  grid-template-columns: 0.4fr 0.3fr 0.2fr 0.1fr;
   font-weight: bolder;
   color: rgb(44, 44, 44);
+  padding-bottom: 0.5rem;
 }
 
 .probody{
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 0.4fr 0.3fr 0.2fr 0.1fr;
   gap: 10px;
 }
 
 
 .tableb{
+  justify-content: end;
   height: 1rem;
-  width: 7rem;
   align-content: center;
 }
 .tablebo{
   height: 1rem;
-  width: 7rem;
+
+  align-content: center;
+  cursor: pointer;
+  color: blue;
+}
+
+.conheight{
+  min-height: 2rem;
+  font-size: 16px;
+}
+
+.tablebend{
+  display: grid;
+}
+
+.tablebon{
+  height: 1rem;
   align-content: center;
   cursor: pointer;
   color: blue;
@@ -85,6 +104,7 @@
 
 .moreActions {
   position: relative;  
+  text-align: center;
 }
 
 .dropdown {

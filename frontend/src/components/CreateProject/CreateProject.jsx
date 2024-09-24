@@ -45,7 +45,7 @@ const CreateProject = () => {
     
       if (response.status === 201) {
         setError('');
-        navigate('/project');
+        navigate('/project-list');
         console.log('Project Created')
       } else {
         setError('Failed to create project. Please try again.');

@@ -52,7 +52,7 @@ const Navbar = () => {
 
         <div className={styles.features1}>
           <p>Your works</p>
-          <p>Projects</p>
+          <p onClick={()=>navigate('/project-list')}>Projects</p>
         </div>
         
         <div>
