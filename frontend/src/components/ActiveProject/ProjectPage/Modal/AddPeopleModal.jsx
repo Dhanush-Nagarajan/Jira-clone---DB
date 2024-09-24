@@ -61,26 +61,27 @@ const AddPeopleModal = ({ close, updateUsers }) => {
 
   const handleAddUser = async (e) => {
     e.preventDefault();
-
+  
     const selectedUserIds = selectedUsers.map((user) => user._id); // Extract IDs from selected users
-
+  
     // Log selected user IDs and projectId to the console
     console.log('Selected User IDs:', selectedUserIds);
     console.log('Project ID:', projectId);
-
+  
     try {
-      const token = localStorage.getItem('token');
+      console.log(token);
+  
+      // Correct structure: URL, payload, and then config with headers
       const response = await axios.post(
-        `http://localhost:2000/api/projects/add/${projectId}/${selectedUserIds}`,
+        `http://localhost:2000/api/projects/add/${projectId}`, // Pass projectId in URL
+        { userIds: selectedUserIds }, // Pass selected user IDs in the body
         {
-
           headers: {
-            Authorization: `${token}`,
+            Authorization: `${token}`, // Set the token in the headers
           },
         }
       );
-      
-
+  
       if (response.status === 200) {
         setMessage('Users added successfully!');
         updateUsers(selectedUsers); // Update the user list in the parent component
@@ -93,7 +94,7 @@ const AddPeopleModal = ({ close, updateUsers }) => {
       setMessage('An error occurred. Please try again later.');
     }
   };
-
+  
   const handleOverlayClick = (e) => {
     if (e.target.className === Style.Modal) {
       close(false);

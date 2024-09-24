@@ -3,7 +3,7 @@ import User from "../models/userModels.js";
 import Project from "../models/projectModels.js";
 
 export const addTask = async (req,res)=>{
-    const {ProjectID,UserID} = req.params;  
+    const {ProjectID} = req.params;  
     const assignedBy = req.user._id;
     const {issue} = req.body;
 
@@ -21,7 +21,7 @@ export const addTask = async (req,res)=>{
             issue,
             status:"To-Do",
             assignedBy,
-            assignedTo : UserID
+            assignedTo : ""
         });
         await newtask.save();
         res.status(201).json({ message: "Task created successfully", newtask });
