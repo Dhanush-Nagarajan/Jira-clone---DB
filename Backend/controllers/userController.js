@@ -13,7 +13,7 @@ export const getUsersForProject = async (req, res) => {
 
     const projectParticipants = project.participants;
 
-    if(loggedInUserID === projectParticipants[0]){
+    if(projectParticipants[0].equals(loggedInUserID)){
       const filteredUsers = await User.find({
         _id: { $nin: [loggedInUserID, ...projectParticipants] },
       }).select("-password");
