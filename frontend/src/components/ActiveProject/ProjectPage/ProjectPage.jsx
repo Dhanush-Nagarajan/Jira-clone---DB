@@ -17,16 +17,26 @@ const ProjectPage = () => {
   const [addPeople, setAddPeople] = useState(false);
   const [issueModal, setIssueModal] = useState(false);
   const [draggedTaskId, setDraggedTaskId] = useState(null);
-  const [projectName, setProjectName] = useState('');
-  const [tasks, setTasks] = useState([]);
+  const [projectName, setProjectName] = useState('Sample Project');
+  
+  // Static tasks data for "To Do", "In Progress", and "Done" columns
+  const [tasks, setTasks] = useState([
+    { id: 1, title: 'Task 1', taskId: 'T001', assignee: 'John', status: 'TODO' },
+    { id: 2, title: 'Task 2', taskId: 'T002', assignee: 'Alice', status: 'TODO' },
+    { id: 3, title: 'Task 3', taskId: 'T003', assignee: 'Bob', status: 'IN PROGRESS' },
+    { id: 4, title: 'Task 4', taskId: 'T004', assignee: 'Sara', status: 'IN PROGRESS' },
+    { id: 5, title: 'Task 5', taskId: 'T005', assignee: 'Tom', status: 'DONE' },
+    { id: 6, title: 'Task 6', taskId: 'T006', assignee: 'Lily', status: 'DONE' },
+  ]);
+
   const { projectDetails, loading, error } = useProjectContext();
+  console.log(projectDetails)
 
   useEffect(() => {
     if (projectDetails) {
-      // Fetch project name and tasks
-      console.log(projectDetails)
+      console.log(projectDetails);
       setProjectName(projectDetails.Project_name || "Unnamed Project");
-      setTasks(projectDetails.tasks || []);
+      setTasks(projectDetails.tasks || tasks);
     }
   }, [projectDetails]);
 
@@ -100,7 +110,7 @@ const ProjectPage = () => {
                   {addPeople && <AddPeopleModal close={setAddPeople} />}
                 </div>
                 <div className={style.sprint}>
-                  <p title='sprint'>Sprint <FaCaretDown /></p>
+                  <p title='sprint'>Sprint<FaCaretDown /></p>
                 </div>
               </div>
             </div>
@@ -123,7 +133,7 @@ const ProjectPage = () => {
                   >
                     <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
                     <div className={style.inner}><p>{task.taskId}</p>
-                      <div className={style.usname}>{task.assignee}</div>
+                      <div className={style.usname}>{task.assignee[0]}</div>
                     </div>
                   </div>
                 ))}
@@ -146,7 +156,7 @@ const ProjectPage = () => {
                   >
                     <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
                     <div className={style.inner}><p>{task.taskId}</p>
-                      <div className={style.usname}>{task.assignee}</div>
+                      <div className={style.usname}>{task.assignee[0]}</div>
                     </div>
                   </div>
                 ))}
@@ -168,7 +178,7 @@ const ProjectPage = () => {
                   >
                     <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
                     <div className={style.inner}><p>{task.taskId}</p>
-                      <div className={style.usname}>{task.assignee}</div>
+                      <div className={style.usname}>{task.assignee[0]}</div>
                     </div>
                   </div>
                 ))}
