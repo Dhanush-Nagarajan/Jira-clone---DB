@@ -86,7 +86,7 @@ const ListProject = () => {
             <p className={style.tableb}>Name</p>
             <p className={style.tableb}>Key</p>
             <p className={style.tableb}>Lead</p>
-            <p className={style.tableb}>More Actions</p>
+            <p className={style.tablebend}>More Actions</p>
           </div>
           <hr />
 
@@ -95,30 +95,34 @@ const ListProject = () => {
           ) : (
             <div className={style.tablebcon}>
               {projects.map((project) => (
-                <div className={style.probody} key={project._id}>
-                  <p className={style.tablebo} onClick={() => handleProjectClick(project._id)}>{project.Project_name}</p>
-                  <p className={style.tableb}>{project.Key}</p>
-                  <p className={style.tablebo}>{leadNames[project.createdBy] || 'Loading...'}</p> {/* Display lead name */}
+                  <div key={project._id} className={style.conheight}> {/* Move the key here */}
+                    <div className={style.probody}>
+                      <p className={style.tablebon} onClick={() => handleProjectClick(project._id)}>{project.Project_name}</p>
+                      <p className={style.tableb}>{project.Key}</p>
+                      <p className={style.tablebo}>{leadNames[project.createdBy] || 'Loading...'}</p> {/* Display lead name */}
 
-                  <div className={style.moreActions}>
-                    <HiDotsHorizontal 
-                      className={style.tableb}
-                      onClick={() => handleToggleDropdown(project._id)} 
-                    />
-                    {activeDropdown === project._id && (
-                      <div className={style.dropdown}>
-                        <p onClick={() => deleteProject(project._id)}>Delete</p>
+                      <div className={style.moreActions}>
+                        <HiDotsHorizontal 
+                          className={style.tableb}
+                          onClick={() => handleToggleDropdown(project._id)} 
+                        />
+                        {activeDropdown === project._id && (
+                          <div className={style.dropdown}>
+                            <p onClick={() => deleteProject(project._id)}>Delete</p>
+                          </div>
+                        )}
                       </div>
-                    )}
+                    </div>
+                    <hr />  
                   </div>
-                </div>
-              ))}
-              <hr />
+                ))}
             </div>
           )}
         </div>
       </div>
+      
     </div>
+    
   );
 };
 
