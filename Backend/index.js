@@ -9,6 +9,8 @@ import ProjectRoutes from "./routes/projectRoutes.js"
 import commentRoutes from "./routes/commentRoutes.js"
 import addUser from "./routes/addMemberRoutes.js"
 import getUsers from "./routes/userRoutes.js";
+import invite from "./routes/invitationRoutes.js";
+
 
 const app = express();
 app.use(cookieParser());
@@ -30,6 +32,8 @@ app.use ("/api/projects", ProjectRoutes);
 app.use ("/api/projects", addUser);
 app.use ("/api/projects", commentRoutes);
 app.use ("/api/projects", getUsers);
+app.use ("/api/invite", invite);
+
 
 app.listen(PORT, () => {
     connectToMongoDB();
