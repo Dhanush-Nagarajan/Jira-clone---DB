@@ -12,7 +12,6 @@ export const DELETE_PROJECT_REQUEST = 'DELETE_PROJECT_REQUEST';
 export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS';
 export const DELETE_PROJECT_FAILURE = 'DELETE_PROJECT_FAILURE';
 
-// Fetch project list
 export const fetchProjectList = () => async (dispatch) => {
   const token = localStorage.getItem('token');
   if (!token) {
@@ -39,7 +38,7 @@ export const fetchProjectList = () => async (dispatch) => {
   }
 };
 
-// Fetch project by ID
+
 export const fetchProjectById = (projectId) => async (dispatch) => {
   const token = localStorage.getItem('token');
   if (!token) {

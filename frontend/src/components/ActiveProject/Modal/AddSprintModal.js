@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import style from './AddSprintModal.module.css'; // Assuming you create a separate CSS file for styling
-
+import style from './AddSprintModal.module.css'; 
 const AddSprintModal = ({ close, addSprint }) => {
   const [sprintName, setSprintName] = useState('');
   const [issues, setIssues] = useState([{ title: '', assignee: '' }]);

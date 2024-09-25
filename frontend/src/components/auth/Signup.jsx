@@ -12,22 +12,20 @@ const Signup = () => {
     cpassword: '',
   });
   
-  const [token, setToken] = useState(null); // State to hold the token
+  const [token, setToken] = useState(null); 
   const navigate = useNavigate();
   
-  // Function to handle navigation to home
   const home = () => {
     navigate('/');
   }
 
-  // Extract token from URL
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const tokenFromUrl = urlParams.get('token');
     console.log(token);
     
-    setToken(tokenFromUrl); // Set token in state
-  }, []);
+    setToken(tokenFromUrl);
+  }, [token]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -39,17 +37,17 @@ const Signup = () => {
 
     if (input.password !== input.cpassword) {
       alert("Passwords do not match");
-      return; // Return to prevent signup if passwords don't match
+      return; 
     }
 
     try {
-      // Include the token in the signup request
+
       const response = await axios.post('http://localhost:2000/api/auth/signup', {
         fullName: input.fullName,
         email: input.email,
         password: input.password,
         confirmPassword: input.cpassword,
-        token: token // Send the token if it's available
+        token: token 
       });
 
       if (response.status === 201) {

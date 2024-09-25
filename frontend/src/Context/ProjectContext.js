@@ -5,11 +5,10 @@ const ProjectContext = createContext();
 
 export const ProjectProvider = ({ children }) => {
   const [projectDetails, setProjectDetails] = useState(null);
-  const [participants, setParticipants] = useState([]); // State to hold the participants
+  const [participants, setParticipants] = useState([]); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Function to fetch project details by project ID
   const fetchProjectDetails = async (projectId) => {
     setLoading(true);
     const token = localStorage.getItem('token');
@@ -28,12 +27,11 @@ export const ProjectProvider = ({ children }) => {
     }
   };
 
-  // Function to fetch participants by project ID
- // Function to fetch participants by project ID
+  
 const fetchParticipants = async (projectId) => {
-  // Check if participants are already loaded for the current project
+
   if (participants.length > 0 && projectDetails && projectDetails._id === projectId) {
-    return; // Prevent re-fetching the same data
+    return;
   }
 
   setLoading(true);

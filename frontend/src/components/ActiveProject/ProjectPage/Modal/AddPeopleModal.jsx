@@ -9,7 +9,7 @@ const AddPeopleModal = ({ close, updateUsers }) => {
   const [message, setMessage] = useState('');
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const [inviteEmail, setInviteEmail] = useState(''); // State for invite email
+  const [inviteEmail, setInviteEmail] = useState(''); 
   const [showInviteInput, setShowInviteInput] = useState(false); // State to show invite input
 
   const { projectDetails } = useProjectContext();
@@ -27,7 +27,7 @@ const AddPeopleModal = ({ close, updateUsers }) => {
           },
         });
         setUsers(response.data);
-        if (response.status == 500) {      
+        if (response.status === 500) {      
           
       }
       } catch (error) {
@@ -41,7 +41,7 @@ const AddPeopleModal = ({ close, updateUsers }) => {
     }
   }, [projectId, token]);
 
-  // Filter users based on input email
+
   useEffect(() => {
     if (email) {
       setFilteredUsers(users.filter(user => user.email.toLowerCase().includes(email.toLowerCase())));
@@ -115,8 +115,8 @@ const AddPeopleModal = ({ close, updateUsers }) => {
 
       if (response.status === 200) {
         setMessage('Invitation sent successfully!');
-        setInviteEmail(''); // Clear the input after sending
-        setShowInviteInput(false); // Hide the input field
+        setInviteEmail(''); 
+        setShowInviteInput(false); 
       } else {
         setMessage('Failed to send invitations.');
       }
@@ -188,7 +188,7 @@ const AddPeopleModal = ({ close, updateUsers }) => {
           </div>
         )}
 
-        {/* Invite via Email Section */}
+  
         <div className={Style.inviteButtonContainer}>
           <button onClick={() => setShowInviteInput((prev) => !prev)} className={Style.inviteButton}>
             {showInviteInput ? 'Cancel Invite' : 'Invite via Email'}

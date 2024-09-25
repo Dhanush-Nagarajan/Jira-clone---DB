@@ -18,20 +18,17 @@ const Profile = () => {
     <div>
       <Navbar />
       <div className={style.profileContainer}>
-        {/* Profile Header */}
         <div className={style.header}>
           <h2>User Profile</h2>
         </div>
         
         <hr className={style.line} />
         
-        {/* User Info */}
         <div className={style.userInfo}>
           <h3 className={style.name}>Name : {formatFullName(userData.fullName)}</h3>
           <p className={style.email}>Email : {userData.email}</p>
         </div>
 
-        {/* View All Projects Button */}
         <div className={style.projectsSection}>
           <button className={style.projectsButton} onClick={()=>navigate('/project-list')}>
             View All Projects

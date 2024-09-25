@@ -7,7 +7,7 @@ export const FETCH_LEAD_FAILURE = 'FETCH_LEAD_FAILURE';
 export const fetchLeadById = (createdBy) => async (dispatch) => {
   dispatch({ type: FETCH_LEAD_REQUEST });
 
-  const token = localStorage.getItem('token'); // Retrieve the token from local storage
+  const token = localStorage.getItem('token'); 
 
   try {
     const response = await axios.get(`http://localhost:2000/api/projects/getlead/${createdBy}`, {

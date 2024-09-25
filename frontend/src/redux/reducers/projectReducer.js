@@ -12,7 +12,7 @@ import {
 
 const initialState = {
   projects: [],
-  project: null,  // Add this for a single project
+  project: null,  
   loading: false,
   error: null,
 };
@@ -22,7 +22,7 @@ const projectReducer = (state = initialState, action) => {
     case FETCH_PROJECT_LIST_REQUEST:
     case FETCH_PROJECT_BY_ID_REQUEST:
     case DELETE_PROJECT_REQUEST:
-      return { ...state, loading: true, error: null }; // Clear error before each new request
+      return { ...state, loading: true, error: null }; 
 
     case FETCH_PROJECT_LIST_SUCCESS:
       return { ...state, loading: false, projects: action.payload, error: null };

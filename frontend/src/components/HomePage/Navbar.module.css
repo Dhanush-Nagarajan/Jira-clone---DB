@@ -17,6 +17,8 @@
     align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
+    gap: 8px;
 }
 
 .features1 {

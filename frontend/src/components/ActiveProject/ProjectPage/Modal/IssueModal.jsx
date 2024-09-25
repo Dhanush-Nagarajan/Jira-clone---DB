@@ -53,17 +53,17 @@ const IssueModal = ({ closeModal }) => {
                 <div className={style.vucomment} key={index}>
                   <div>
                     <div className={style.usname}>
-                      <p>{participant.fullName ? participant.fullName[0] : 'U'}</p> {/* Safety check for name */}
+                      <p>{participant.fullName ? participant.fullName[0] : 'U'}</p> 
                     </div>
                   </div>
                   <div>
-                    <h5>{participant.fullName || 'Unknown'}</h5> {/* Fallback in case name is undefined */}
+                    <h5>{participant.fullName || 'Unknown'}</h5> 
                     <p>{participant.email || 'No email'}</p>
                   </div>
                 </div>
               ))
             ) : (
-              <p>No participants available</p> // Fallback message when there are no participants
+              <p>No participants available</p>
             )}
           </div>
         </div>
@@ -77,12 +77,11 @@ const IssueModal = ({ closeModal }) => {
               <p className={style.tablecontent}>Reporter</p>
             </div>
             <div>
-              {/* Assign operation */}
               <p className={style.tablecontent} style={{cursor:'pointer'}} onClick={toggleDropdown}>
-                {assignedPerson} {/* Display assigned person or Unassigned */}
+                {assignedPerson} 
               </p>
 
-              {/* Dropdown for participant list */}
+              
               {showDropdown && (
                 <div className={style.dropdown}>
                   {participants.map((participant) => (

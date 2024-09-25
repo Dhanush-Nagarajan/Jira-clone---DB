@@ -5,7 +5,6 @@ import { IoShareSocialSharp } from "react-icons/io5";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { TiUserAdd } from "react-icons/ti";
 import { FaCaretDown } from "react-icons/fa";
-import { MdOutlineDone } from "react-icons/md";
 import style from './ProjectPage.module.css';
 import AddPeopleModal from './Modal/AddPeopleModal';
 import IssueModal from './Modal/IssueModal';
@@ -24,7 +23,6 @@ const ProjectPage = () => {
   const userData = JSON.parse(localStorage.getItem('user'));
   const userId = userData?._id;
 
-  // Static task data
   const staticTasks = [
     { id: '1', title: 'Design homepage', taskId: 'TASK-01', status: 'TODO', assignee: 'John' },
     { id: '2', title: 'Develop user login API', taskId: 'TASK-02', status: 'IN PROGRESS', assignee: 'Jane' },
@@ -33,12 +31,12 @@ const ProjectPage = () => {
     { id: '5', title: 'Fix login bug', taskId: 'TASK-05', status: 'DONE', assignee: 'Anna' }
   ];
 
-  const [tasks, setTasks] = useState(staticTasks); // Initialize with static data
+  const [tasks, setTasks] = useState(staticTasks); 
   const [leadNames, setLeadNames] = useState({});
   const [viewMore, setViewMore] = useState(false);
   const { projectDetails, loading, error, fetchParticipants, participants } = useProjectContext();
   const prevProjectDetailsRef = useRef();
-  const dropdownRef = useRef(); // Create a ref for the dropdown
+  const dropdownRef = useRef(); 
 
   useEffect(() => {
     const fetchLeads = async () => {
@@ -73,7 +71,6 @@ const ProjectPage = () => {
         setProjectName(newProjectName);
       }
 
-      // Check if project has tasks; if not, keep static tasks
       if (projectDetails.tasks && projectDetails.tasks.length > 0) {
         setTasks(projectDetails.tasks);
       }
@@ -85,14 +82,12 @@ const ProjectPage = () => {
     }
   }, [projectDetails, fetchProjectParticipants, projectName]);
 
-  // Close dropdown on blur
   const handleBlur = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.relatedTarget)) {
       setViewMore(false);
     }
   };
 
-  // Add event listener for blur
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -142,7 +137,6 @@ const ProjectPage = () => {
     event.preventDefault();
   };
 
-  // Check if user is the creator of the project
   const isProjectCreator = projectDetails?.createdBy === userId;
 
   return (
@@ -182,8 +176,8 @@ const ProjectPage = () => {
                 <button
                   className={style.bgcd}
                   onClick={toggleViewMore}
-                  onBlur={handleBlur}  // Handle blur event
-                  ref={dropdownRef}  // Attach ref to dropdown
+                  onBlur={handleBlur}  
+                  ref={dropdownRef}  
                 >
                   <HiDotsHorizontal />
                 </button>
@@ -211,7 +205,7 @@ const ProjectPage = () => {
           </div>
 
           <div className={style.todocon}>
-            {/* To Do Column */}
+          
             <div className={style.todobox} onDragOver={allowDrop} onDrop={() => handleDrop('TODO')}>
               <p className={style.flow}>TO DO</p>
               {filterTasksByStatus('TODO').map((task) => (
@@ -222,7 +216,7 @@ const ProjectPage = () => {
               ))}
             </div>
 
-            {/* In Progress Column */}
+           
             <div className={style.todobox} onDragOver={allowDrop} onDrop={() => handleDrop('IN PROGRESS')}>
               <p className={style.flow}>IN PROGRESS</p>
               {filterTasksByStatus('IN PROGRESS').map((task) => (
@@ -233,7 +227,7 @@ const ProjectPage = () => {
               ))}
             </div>
 
-            {/* Done Column */}
+        
             <div className={style.todobox} onDragOver={allowDrop} onDrop={() => handleDrop('DONE')}>
               <p className={style.flow}>DONE</p>
               {filterTasksByStatus('DONE').map((task) => (

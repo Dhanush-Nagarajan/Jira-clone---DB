@@ -23,10 +23,10 @@ const ListProject = () => {
   const { lead, leadLoading, leadError } = useSelector((state) => state.lead);
 
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [leadNames, setLeadNames] = useState({}); // Store lead names by ID
-  const [searchTerm, setSearchTerm] = useState(''); // Add search state
+  const [leadNames, setLeadNames] = useState({}); 
+  const [searchTerm, setSearchTerm] = useState(''); 
 
-  // Filter projects based on search term
+ 
   const filteredProjects = projects.filter(project =>
     project.Project_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -36,7 +36,7 @@ const ListProject = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    // Fetch lead details for all projects
+  
     const fetchAllLeads = async () => {
       const uniqueLeadIds = [...new Set(projects.map((project) => project.createdBy))];
       for (const createdBy of uniqueLeadIds) {
@@ -53,7 +53,7 @@ const ListProject = () => {
     if (lead) {
       setLeadNames((prevLeadNames) => ({
         ...prevLeadNames,
-        [lead._id]: lead.fullName // Use fullName from lead data
+        [lead._id]: lead.fullName 
       }));
     }
   }, [lead]);
@@ -67,7 +67,7 @@ const ListProject = () => {
   };
 
   const editProject = (projectId) => {
-    navigate(`/edit-project/${projectId}`); // Navigate to edit project page
+    navigate(`/edit-project/${projectId}`); 
   };
 
   if (loading || leadLoading) return <p>Loading...</p>;
@@ -88,13 +88,12 @@ const ListProject = () => {
         </div>
 
         <div>
-          {/* Add search input */}
           <input 
             type="text" 
             placeholder='Search projects..' 
             className={style.ip} 
             value={searchTerm} 
-            onChange={(e) => setSearchTerm(e.target.value)} // Update search term
+            onChange={(e) => setSearchTerm(e.target.value)} 
           />
         </div>
 
@@ -112,7 +111,7 @@ const ListProject = () => {
           ) : (
             <div className={style.tablebcon}>
               {filteredProjects.map((project) => (
-                <div key={project._id} className={style.conheight}> {/* Move the key here */}
+                <div key={project._id} className={style.conheight}> 
                   <div className={style.probody}>
                     <p className={style.tablebon} onClick={() => handleProjectClick(project._id)}>
                     {project.Project_name.charAt(0).toUpperCase() + project.Project_name.slice(1).toLowerCase()}</p>
