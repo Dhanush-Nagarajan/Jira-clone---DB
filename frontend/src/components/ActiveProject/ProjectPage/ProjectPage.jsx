@@ -26,7 +26,7 @@ const ProjectPage = () => {
   const [viewMore, setViewMore] = useState(false); // State to manage dropdown visibility for participants
 
   const { projectDetails, loading, error, fetchParticipants, participants } = useProjectContext();
-  const userData = JSON.parse(localStorage.getItem('user'));
+  
 
   // Ref to track previous project details
   const prevProjectDetailsRef = useRef();
