@@ -23,14 +23,17 @@ const ProjectPage = () => {
   const [projectName, setProjectName] = useState('Sample Project');
   const userData = JSON.parse(localStorage.getItem('user'));
   const userId = userData?._id;
-  const [tasks, setTasks] = useState([
+
+  // Static task data
+  const staticTasks = [
     { id: '1', title: 'Design homepage', taskId: 'TASK-01', status: 'TODO', assignee: 'John' },
     { id: '2', title: 'Develop user login API', taskId: 'TASK-02', status: 'IN PROGRESS', assignee: 'Jane' },
     { id: '3', title: 'Create database schema', taskId: 'TASK-03', status: 'IN PROGRESS', assignee: 'Paul' },
     { id: '4', title: 'Test login functionality', taskId: 'TASK-04', status: 'DONE', assignee: 'Mike' },
     { id: '5', title: 'Fix login bug', taskId: 'TASK-05', status: 'DONE', assignee: 'Anna' }
-  ]);
+  ];
 
+  const [tasks, setTasks] = useState(staticTasks); // Initialize with static data
   const [leadNames, setLeadNames] = useState({});
   const [viewMore, setViewMore] = useState(false);
   const { projectDetails, loading, error, fetchParticipants, participants } = useProjectContext();
@@ -70,9 +73,9 @@ const ProjectPage = () => {
         setProjectName(newProjectName);
       }
 
-      const newTasks = projectDetails.tasks || [];
-      if (JSON.stringify(newTasks) !== JSON.stringify(tasks)) {
-        setTasks(newTasks);
+      // Check if project has tasks; if not, keep static tasks
+      if (projectDetails.tasks && projectDetails.tasks.length > 0) {
+        setTasks(projectDetails.tasks);
       }
 
       if (prevProjectDetailsRef.current !== projectDetails) {
@@ -80,7 +83,7 @@ const ProjectPage = () => {
         prevProjectDetailsRef.current = projectDetails;
       }
     }
-  }, [projectDetails, fetchProjectParticipants, projectName, tasks]);
+  }, [projectDetails, fetchProjectParticipants, projectName]);
 
   // Close dropdown on blur
   const handleBlur = (event) => {
@@ -217,7 +220,6 @@ const ProjectPage = () => {
                   <div className={style.inner}><p>{task.taskId}</p><div className={style.usname}>{task.assignee[0]}</div></div>
                 </div>
               ))}
-              {issueModal && <IssueModal closeModal={setIssueModal} />}
             </div>
 
             {/* In Progress Column */}
@@ -225,7 +227,7 @@ const ProjectPage = () => {
               <p className={style.flow}>IN PROGRESS</p>
               {filterTasksByStatus('IN PROGRESS').map((task) => (
                 <div key={task.id} className={style.taskbox} draggable onDragStart={() => handleDragStart(task.id)} onClick={toggleIssueModal}>
-                  <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
+                  <div className={style.inner}><p>{task.title}</p><HiDotsHorizontal /></div>
                   <div className={style.inner}><p>{task.taskId}</p><div className={style.usname}>{task.assignee[0]}</div></div>
                 </div>
               ))}
@@ -233,15 +235,16 @@ const ProjectPage = () => {
 
             {/* Done Column */}
             <div className={style.todobox} onDragOver={allowDrop} onDrop={() => handleDrop('DONE')}>
-              <p className={style.flow}>DONE <MdOutlineDone /></p>
+              <p className={style.flow}>DONE</p>
               {filterTasksByStatus('DONE').map((task) => (
                 <div key={task.id} className={style.taskbox} draggable onDragStart={() => handleDragStart(task.id)} onClick={toggleIssueModal}>
-                  <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
+                  <div className={style.inner}><p>{task.title}</p><HiDotsHorizontal /></div>
                   <div className={style.inner}><p>{task.taskId}</p><div className={style.usname}>{task.assignee[0]}</div></div>
                 </div>
               ))}
             </div>
           </div>
+          {issueModal && <IssueModal closeModal={setIssueModal} />}
         </div>
       </div>
     </div>

@@ -29,24 +29,30 @@ export const ProjectProvider = ({ children }) => {
   };
 
   // Function to fetch participants by project ID
-  const fetchParticipants = async (projectId) => {
-    setLoading(true);
-    const token = localStorage.getItem('token');
-    try {
-      const response = await axios.get(`http://localhost:2000/api/projects/getparticipants/${projectId}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
-      setParticipants(response.data);
-      console.log('Participants:', response.data);
-      console.log('fetched succssfully');
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+ // Function to fetch participants by project ID
+const fetchParticipants = async (projectId) => {
+  // Check if participants are already loaded for the current project
+  if (participants.length > 0 && projectDetails && projectDetails._id === projectId) {
+    return; // Prevent re-fetching the same data
+  }
+
+  setLoading(true);
+  const token = localStorage.getItem('token');
+  try {
+    const response = await axios.get(`http://localhost:2000/api/projects/getparticipants/${projectId}`, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    setParticipants(response.data);
+    console.log('Participants fetched:', response.data);
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <ProjectContext.Provider value={{ projectDetails, fetchProjectDetails, participants, fetchParticipants, loading, error }}>
