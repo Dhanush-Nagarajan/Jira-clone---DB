@@ -114,7 +114,8 @@ const ListProject = () => {
               {filteredProjects.map((project) => (
                 <div key={project._id} className={style.conheight}> {/* Move the key here */}
                   <div className={style.probody}>
-                    <p className={style.tablebon} onClick={() => handleProjectClick(project._id)}>{project.Project_name}</p>
+                    <p className={style.tablebon} onClick={() => handleProjectClick(project._id)}>
+                    {project.Project_name.charAt(0).toUpperCase() + project.Project_name.slice(1).toLowerCase()}</p>
                     <p className={style.tableb}>{project.Key}</p>
                     <p className={style.tablebo}>
                       {leadNames[project.createdBy] 

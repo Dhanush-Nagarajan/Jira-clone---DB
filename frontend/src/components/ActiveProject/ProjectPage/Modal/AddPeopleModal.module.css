@@ -100,6 +100,17 @@
   background-color: #f9f9f9;
 }
 
+.buttonaddsend{
+  height: auto;
+  width: auto;
+  border: none;
+  padding: 10px;
+  background-color:  rgb(81, 81, 230);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 .selectedEmails h4 {
   margin: 0;
   color: #333;
@@ -128,4 +139,24 @@
 
 .removeButton:hover {
   text-decoration: underline;
+}
+
+.inviteButtonContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.inviteButton {
+  background-color: rgb(81, 81, 230);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.inviteButton:hover {
+  background-color: blue; /* Darker green */
 }
