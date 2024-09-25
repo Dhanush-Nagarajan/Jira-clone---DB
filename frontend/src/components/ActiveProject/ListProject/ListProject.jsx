@@ -99,7 +99,12 @@ const ListProject = () => {
                     <div className={style.probody}>
                       <p className={style.tablebon} onClick={() => handleProjectClick(project._id)}>{project.Project_name}</p>
                       <p className={style.tableb}>{project.Key}</p>
-                      <p className={style.tablebo}>{leadNames[project.createdBy] || 'Loading...'}</p> {/* Display lead name */}
+                      <p className={style.tablebo}>
+                        {leadNames[project.createdBy] 
+                          ? leadNames[project.createdBy].charAt(0).toUpperCase() + leadNames[project.createdBy].slice(1).toLowerCase()
+                          : 'Loading...'}
+                      </p>
+                      {/* Display lead name */}
 
                       <div className={style.moreActions}>
                         <HiDotsHorizontal 
