@@ -45,14 +45,14 @@ export const inviteMember = async (req, res) => {
         service: 'gmail',
         auth: {
           user: 'sa0922494@gmail.com',
-          pass: 'your_app_specific_password', // Update to an app-specific password
+          pass: process.env.mailPass, // Update to an app-specific password
         },
       });
 
       const inviteLink = `http://localhost:3000/signup?token=${token}`;
 
       const mailOptions = {
-        from: 'sa0922494@gmail.com',
+        from:'"Jira Clone" <sa0922494@gmail.com>',
         to: email,
         subject: 'Project Invitation',
         text: `You are invited to join the project. Register here: ${inviteLink}`,
@@ -61,45 +61,7 @@ export const inviteMember = async (req, res) => {
       await transporter.sendMail(mailOptions);
     }
 
-<<<<<<< HEAD
     res.status(200).json({ message: "Invitations sent successfully" });
-=======
-    // Create an invitation for the unregistered user
-    const token = crypto.randomBytes(32).toString("hex");
-
-    const newInvitation = new Invitation({
-      email,
-      projectId,
-      token,
-    });
-
-    await newInvitation.save();
-
-    // Send email invitation using nodemailer
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'sa0922494@gmail.com',
-        pass: process.env.mailPass,
-      },
-    });
-
-    const inviteLink = `http://localhost:3000/signup?token=${token}`;
-
-    const mailOptions = {
-      from: '"Jira Clone"<sa0922494@gmail.com>',
-      to: email,
-      subject: 'Project Invitation',
-      text: `You are invited to join the project. Register here: ${inviteLink}`,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return res.status(500).json({ error: error.message });
-      }
-      res.status(200).json({ message: "Invitation sent successfully" });
-    });
->>>>>>> a79749fc251f90cefd90fd985718fc071ad7d342
   } catch (error) {
     console.log("Error in inviteMember controller:", error.message);
     res.status(500).json({ error: error.message });
