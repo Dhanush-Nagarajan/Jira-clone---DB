@@ -103,17 +103,19 @@ const IssueModal = ({closeModal}) => {
         <div className={style.detail}><p>Details</p></div>
         <div className={style.tableboxbottom}>
           <div >
+            <p className={style.tablecontent}>Assign</p>
             <p className={style.tablecontent}>Label</p>
             <p className={style.tablecontent}>Parent</p>
             <p className={style.tablecontent}>Team</p>
-            <p className={style.tablecontent}>Sprint</p>
+   
             <p className={style.tablecontent}>Reporter</p>
           </div>
           <div>
+            <p className={style.tablecontent}>Unassigned</p>
             <p className={style.tablecontent}>None</p>
             <p className={style.tablecontent}>None</p>
             <p className={style.tablecontent}>None</p>
-            <p className={style.tablecontent}>Goat Sprint 1</p>
+
             <p className={style.tablecontent}>Bala</p>
           </div>
         </div>

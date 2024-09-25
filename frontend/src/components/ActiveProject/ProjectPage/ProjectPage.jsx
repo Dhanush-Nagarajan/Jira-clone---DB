@@ -13,7 +13,7 @@ import Navbar from '../../HomePage/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
 import { useProjectContext } from '../../../Context/ProjectContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLeadById } from '../../../redux/actions/leadActions'; // Import the action to fetch lead
+import { fetchLeadById } from '../../../redux/actions/leadActions'; 
 
 const ProjectPage = () => {
   const dispatch = useDispatch();
@@ -21,40 +21,42 @@ const ProjectPage = () => {
   const [issueModal, setIssueModal] = useState(false);
   const [draggedTaskId, setDraggedTaskId] = useState(null);
   const [projectName, setProjectName] = useState('Sample Project');
-  const [tasks, setTasks] = useState([]);
-  const [leadNames, setLeadNames] = useState({}); // State to store lead names by ID
-  const [viewMore, setViewMore] = useState(false); // State to manage dropdown visibility for participants
+  
+  // Static task data
+  const [tasks, setTasks] = useState([
+    { id: '1', title: 'Design homepage', taskId: 'TASK-01', status: 'TODO', assignee: 'John' },
+    { id: '2', title: 'Develop user login API', taskId: 'TASK-02', status: 'IN PROGRESS', assignee: 'Jane' },
+    { id: '3', title: 'Create database schema', taskId: 'TASK-03', status: 'IN PROGRESS', assignee: 'Paul' },
+    { id: '4', title: 'Test login functionality', taskId: 'TASK-04', status: 'DONE', assignee: 'Mike' },
+    { id: '5', title: 'Fix login bug', taskId: 'TASK-05', status: 'DONE', assignee: 'Anna' }
+  ]);
+
+  const [leadNames, setLeadNames] = useState({});
+  const [viewMore, setViewMore] = useState(false);
 
   const { projectDetails, loading, error, fetchParticipants, participants } = useProjectContext();
-  
-
-  // Ref to track previous project details
   const prevProjectDetailsRef = useRef();
 
-  // Fetch leads for the project
   useEffect(() => {
     const fetchLeads = async () => {
       if (projectDetails && projectDetails.createdBy) {
-        dispatch(fetchLeadById(projectDetails.createdBy)); // Fetch lead by createdBy ID
+        dispatch(fetchLeadById(projectDetails.createdBy));
       }
     };
-
     fetchLeads();
   }, [dispatch, projectDetails]);
 
-  // To handle fetched lead data
-  const lead = useSelector((state) => state.lead.lead); // Access the lead state
+  const lead = useSelector((state) => state.lead.lead);
 
   useEffect(() => {
     if (lead) {
       setLeadNames((prevLeadNames) => ({
         ...prevLeadNames,
-        [lead._id]: lead.fullName // Store lead name by ID
+        [lead._id]: lead.fullName
       }));
     }
   }, [lead]);
 
-  // Use callback to memoize the fetch function
   const fetchProjectParticipants = useCallback(() => {
     if (projectDetails && projectDetails._id) {
       fetchParticipants(projectDetails._id);
@@ -64,23 +66,18 @@ const ProjectPage = () => {
   useEffect(() => {
     if (projectDetails) {
       const newProjectName = projectDetails.Project_name || "Unnamed Project";
-
-      // Update projectName if it has changed
       if (newProjectName !== projectName) {
         setProjectName(newProjectName);
       }
 
       const newTasks = projectDetails.tasks || [];
-
-      // Update tasks only if they have changed
       if (JSON.stringify(newTasks) !== JSON.stringify(tasks)) {
         setTasks(newTasks);
       }
 
-      // Fetch participants only if the project details have changed
       if (prevProjectDetailsRef.current !== projectDetails) {
         fetchProjectParticipants();
-        prevProjectDetailsRef.current = projectDetails; // Update the ref with current projectDetails
+        prevProjectDetailsRef.current = projectDetails;
       }
     }
   }, [projectDetails, fetchProjectParticipants, projectName, tasks]);
@@ -97,7 +94,7 @@ const ProjectPage = () => {
   };
 
   const toggleViewMore = () => {
-    setViewMore(!viewMore); // Toggle the viewMore state
+    setViewMore(!viewMore);
   };
 
   const filterTasksByStatus = (status) => {
@@ -144,38 +141,31 @@ const ProjectPage = () => {
           <div className={style.workcon}>
             <input type="search" placeholder='Search' className={style.input} />
             <div className={style.ucon}>
-  {Object.values(leadNames).map((leadName, index) => (
-    <div key={index} className={style.usname}>
-      {leadName.charAt(0).toUpperCase()} {/* Display the first letter of the lead's name in uppercase */}
-    </div>
-  ))}
-
-  {/* Display up to 5 participants */}
-  {participants.slice(0, 2).map((participant, index) => (
-    <div key={index} className={style.usname}>
-      {participant.fullName.charAt(0).toUpperCase()} {/* First letter of participant's full name */}
-    </div>
-  ))}
-
-  <button className={style.bgc} onClick={toggleViewMore}>View More</button>
-
-  {/* Dropdown with full participants list */}
-  {viewMore && (
-    <div className={style.dropdown}>
-      {participants.map((participant, index) => (
-        <div key={index} className={style.dropdownItem}>
-          {participant.fullName}
-        </div>
-      ))}
-    </div>
-  )}
-
-  <div title='Add user' className={style.usname} onClick={toggleModal}>
-    <TiUserAdd />
-  </div>
-  {addPeople && <AddPeopleModal close={setAddPeople} />}
-</div>
-
+              {Object.values(leadNames).map((leadName, index) => (
+                <div key={index} className={style.usname}>
+                  {leadName.charAt(0).toUpperCase()}
+                </div>
+              ))}
+              {participants.slice(0, 2).map((participant, index) => (
+                <div key={index} className={style.usname}>
+                  {participant.fullName.charAt(0).toUpperCase()}
+                </div>
+              ))}
+              {participants.length > 1 && <button className={style.bgcd} onClick={toggleViewMore}><HiDotsHorizontal /></button>}
+              {viewMore && (
+                <div className={style.dropdown}>
+                  {participants.map((participant, index) => (
+                    <div key={index} className={style.dropdownItem}>
+                      {participant.fullName}
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div title='Add user' className={style.usname} onClick={toggleModal}>
+                <TiUserAdd />
+              </div>
+              {addPeople && <AddPeopleModal close={setAddPeople} />}
+            </div>
 
             <div className={style.sprint}>
               <p title='sprint'>Sprint<FaCaretDown /></p>

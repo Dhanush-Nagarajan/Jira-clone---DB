@@ -6,6 +6,11 @@ const taskSchema = new mongoose.Schema({
         ref:"Project",
         required:true
     },
+    Sprint_ID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Sprint",
+        required:true
+    },
     issue:{
         type:String,
         required:true,
@@ -25,7 +30,14 @@ const taskSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
         default:null
-    }
+    },
+    comments:[
+        {
+            type:mongoose.Schema.ObjectId,
+            ref:"Comment",
+            default: null
+        }
+    ]
 });
 
 const Task = mongoose.model("Task",taskSchema);

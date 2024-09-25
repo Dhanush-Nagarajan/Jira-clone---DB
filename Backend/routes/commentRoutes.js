@@ -7,6 +7,6 @@ import protectRoute from '../middleware/authenticateUser.js';
 
 const router = express.Router();
 
-router.post("/comments",protectRoute,addcomment)
+router.post("/comments/:TaskID",protectRoute,addcomment)
 
 export default router;

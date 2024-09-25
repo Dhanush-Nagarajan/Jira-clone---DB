@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../../assets/logo.png';
 import './Signup.css';
 import { useNavigate } from 'react-router-dom'; 
@@ -11,13 +11,23 @@ const Signup = () => {
     password: '',
     cpassword: '',
   });
-
+  
+  const [token, setToken] = useState(null); // State to hold the token
   const navigate = useNavigate();
   
-  const home=()=>{
-    navigate('/')
+  // Function to handle navigation to home
+  const home = () => {
+    navigate('/');
   }
 
+  // Extract token from URL
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tokenFromUrl = urlParams.get('token');
+    console.log(token);
+    
+    setToken(tokenFromUrl); // Set token in state
+  }, []);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -29,14 +39,17 @@ const Signup = () => {
 
     if (input.password !== input.cpassword) {
       alert("Passwords do not match");
+      return; // Return to prevent signup if passwords don't match
     }
 
     try {
+      // Include the token in the signup request
       const response = await axios.post('http://localhost:2000/api/auth/signup', {
         fullName: input.fullName,
         email: input.email,
         password: input.password,
         confirmPassword: input.cpassword,
+        token: token // Send the token if it's available
       });
 
       if (response.status === 201) {
@@ -98,7 +111,7 @@ const Signup = () => {
             </div>
           </div>
           <div className='end'>
-            <p className='font'><span>Already Have an account?</span> <span className='loginn'><span onClick={()=>{navigate('/login')}}>Login now!</span></span></p>
+            <p className='font'><span>Already Have an account?</span> <span className='loginn'><span onClick={() => { navigate('/login') }}>Login now!</span></span></p>
           </div>
         </div>
       </div>

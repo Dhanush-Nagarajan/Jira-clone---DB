@@ -5,13 +5,16 @@ import { useProjectContext } from '../../../../Context/ProjectContext';
 
 const AddPeopleModal = ({ close, updateUsers }) => {
   const [email, setEmail] = useState('');
-  const [selectedUsers, setSelectedUsers] = useState([]); // Store selected user objects (id and email)
+  const [selectedUsers, setSelectedUsers] = useState([]);
   const [message, setMessage] = useState('');
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [inviteEmail, setInviteEmail] = useState(''); // State for invite email
+  const [showInviteInput, setShowInviteInput] = useState(false); // State to show invite input
 
   const { projectDetails } = useProjectContext();
   const projectId = projectDetails?._id;
+  
   const token = localStorage.getItem('token');
 
   // Fetch users when the modal is opened
@@ -24,7 +27,6 @@ const AddPeopleModal = ({ close, updateUsers }) => {
           },
         });
         setUsers(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Failed to fetch users:', error);
       }
@@ -44,10 +46,8 @@ const AddPeopleModal = ({ close, updateUsers }) => {
     }
   }, [email, users]);
 
-  // Handle selecting a user email from the filtered list
   const handleSelectEmail = (user) => {
     const { _id, email } = user;
-    // Add the selected user object (ID and email)
     if (!selectedUsers.find((u) => u._id === _id)) {
       setSelectedUsers((prev) => [...prev, { _id, email }]);
     }
@@ -62,35 +62,25 @@ const AddPeopleModal = ({ close, updateUsers }) => {
   const handleAddUser = async (e) => {
     e.preventDefault();
   
-    const selectedUserIds = selectedUsers.map((user) => user._id); // Extract IDs from selected users
-  
-    // Log selected user IDs and projectId to the console
-    console.log('Selected User IDs:', selectedUserIds);
-    console.log('Project ID:', projectId);
+    const selectedUserIds = selectedUsers.map((user) => user._id);
   
     try {
-      console.log(token);
-  
-      // Correct structure: URL, payload, and then config with headers
       const response = await axios.post(
-        `http://localhost:2000/api/projects/add/${projectId}`, // Pass projectId in URL
-        { userIds: selectedUserIds }, // Pass selected user IDs in the body
+        `http://localhost:2000/api/projects/add/${projectId}`,
+        { userIds: selectedUserIds },
         {
           headers: {
-            Authorization: `${token}`, // Set the token in the headers
+            Authorization: `${token}`,
           },
         }
       );
   
       if (response.status === 200) {
         setMessage('Users added successfully!');
-        
-        // Update the user list in the parent component if the function is provided
         if (typeof updateUsers === 'function') {
-          updateUsers(selectedUsers); // Update the user list in the parent component
+          updateUsers(selectedUsers);
         }
-        
-        setSelectedUsers([]); // Clear the selected users
+        setSelectedUsers([]);
       } else {
         setMessage('Failed to add users.');
       }
@@ -98,9 +88,40 @@ const AddPeopleModal = ({ close, updateUsers }) => {
       console.error('Error adding users:', error);
       setMessage('An error occurred. Please try again later.');
     }
+
+    close(false);
   };
-  
-  
+
+  const handleInviteViaEmail = async (e) => {
+    e.preventDefault();
+    if (inviteEmail.trim() === '') {
+      setMessage('Please enter an email to invite.');
+      return;
+    }
+
+    try {
+      const response = await axios.post(`http://localhost:2000/api/invite/${projectId}`, {
+        emails: [inviteEmail],
+        projectId: projectId,
+      }, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+
+      if (response.status === 200) {
+        setMessage('Invitation sent successfully!');
+        setInviteEmail(''); // Clear the input after sending
+        setShowInviteInput(false); // Hide the input field
+      } else {
+        setMessage('Failed to send invitations.');
+      }
+    } catch (error) {
+      console.error('Error sending invitations:', error);
+      setMessage('An error occurred while sending invitations.');
+    }
+  };
+
   const handleOverlayClick = (e) => {
     if (e.target.className === Style.Modal) {
       close(false);
@@ -160,6 +181,30 @@ const AddPeopleModal = ({ close, updateUsers }) => {
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {/* Invite via Email Section */}
+        <div className={Style.inviteButtonContainer}>
+          <button onClick={() => setShowInviteInput((prev) => !prev)} className={Style.inviteButton}>
+            {showInviteInput ? 'Cancel Invite' : 'Invite via Email'}
+          </button>
+        </div>
+
+        {showInviteInput && (
+          <div className={Style.ipfont}>
+            <label>Invite Email</label> <br />
+            <input
+              type="email"
+              value={inviteEmail}
+              required
+              onChange={(e) => setInviteEmail(e.target.value)}
+              placeholder="Enter email to invite"
+              className={Style.ip}
+            />
+            <button onClick={handleInviteViaEmail} className={Style.buttonaddsend}>
+              Send Invite
+            </button>
           </div>
         )}
 

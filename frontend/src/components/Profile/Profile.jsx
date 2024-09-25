@@ -20,7 +20,7 @@ const Profile = () => {
       <div className={style.profileContainer}>
         {/* Profile Header */}
         <div className={style.header}>
-          <h2>Profile</h2>
+          <h2>User Profile</h2>
         </div>
         
         <hr className={style.line} />

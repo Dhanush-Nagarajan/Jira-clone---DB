@@ -49,6 +49,20 @@
   cursor: pointer;
 }
 
+.bgcd{
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  color: white;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: grey;
+  align-content: center;
+  text-align: center;
+  border: 5px gray;
+  cursor: pointer;
+}
+
 .icon{
   cursor: pointer;
   height: 20px;
