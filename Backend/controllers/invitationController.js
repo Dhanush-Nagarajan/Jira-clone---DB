@@ -8,7 +8,7 @@ import User from "../models/userModels.js";
 export const inviteMember = async (req, res) => {
   try {
     const { projectId } = req.params;
-    const { emails } = req.body; // Expecting 'emails' to be an array
+    const { emails } = req.body; 
 
     if (!emails || emails.length === 0) {
       return res.status(400).json({ error: "Email is required." });
@@ -20,16 +20,14 @@ export const inviteMember = async (req, res) => {
       return res.status(404).json({ error: "Project does not exist!" });
     }
 
-    // Loop through each email
+    
     for (const email of emails) {
       const user = await User.findOne({ email });
 
       if (user) {
-        // If user already exists, skip invitation
-        continue; // You may want to handle this differently depending on your requirements
+        continue; 
       }
 
-      // Create an invitation for the unregistered user
       const token = crypto.randomBytes(32).toString("hex");
 
       const newInvitation = new Invitation({
@@ -40,12 +38,11 @@ export const inviteMember = async (req, res) => {
 
       await newInvitation.save();
 
-      // Send email invitation using nodemailer
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
           user: 'sa0922494@gmail.com',
-          pass: process.env.mailPass, // Update to an app-specific password
+          pass: process.env.mailPass, 
         },
       });
 

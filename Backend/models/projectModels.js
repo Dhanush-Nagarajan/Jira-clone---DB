@@ -22,12 +22,19 @@ const projectSchema = new mongoose.Schema(
 			ref: 'User',
 			required: true,
 		},
+		Sprint: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref : "Sprint",
+			}
+		],
 		participants: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				ref: "User",
 			},
-		]
+		],
+		
 	},
 	{ timestamps: true }
 );
