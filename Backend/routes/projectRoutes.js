@@ -16,6 +16,6 @@ router.delete("/deleteproject/:projectId",protectRoute,deleteProject);
 router.post("/addtask/:ProjectID/:SprintID",protectRoute,addTask);
 router.get("/getprojectdetails/:ProjectID",protectRoute,getProjectDetails);
 router.get("/assignTask/:TaskID/:UserID",protectRoute,TaskAssigner);
-router.get("/createsprint/:ProjectID",protectRoute,CreateSprint)
+router.post("/createsprint/:ProjectID",protectRoute,CreateSprint)
 
 export default router;
