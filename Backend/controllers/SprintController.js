@@ -3,6 +3,7 @@ import Project from "../models/projectModels.js";
 
 export const CreateSprint = async (req,res)=>{
     const {ProjectID} = req.params;
+    const {Sprint_title} = req.body
     try {
         const project = await Project.findById(ProjectID);
         if(!project){
@@ -10,6 +11,7 @@ export const CreateSprint = async (req,res)=>{
         }
         const newSprint = new Sprint({
             Project_ID:ProjectID ,
+            Sprint_title:Sprint_title,
             Tasks: null
         });
         await newSprint.save();
