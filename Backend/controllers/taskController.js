@@ -1,5 +1,4 @@
 import Task from "../models/taskModel.js";
-import User from "../models/userModels.js";
 import Project from "../models/projectModels.js";
 
 export const addTask = async (req,res)=>{
@@ -8,11 +7,7 @@ export const addTask = async (req,res)=>{
     const {issue} = req.body;
 
     try {
-        const user = await User.findById(UserID);
         const project = await Project.findById(ProjectID);
-        if(!user){
-            return res.status(500).json({error:"No user was found"});
-        }
         if(!project){
             return res.status(500).json({error:"No project was found"});
         }
@@ -21,7 +16,7 @@ export const addTask = async (req,res)=>{
             issue,
             status:"To-Do",
             assignedBy,
-            assignedTo : ""
+            assignedTo : null
         });
         await newtask.save();
         res.status(201).json({ message: "Task created successfully", newtask });
