@@ -38,7 +38,6 @@
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
@@ -61,7 +60,7 @@
   
   .projectsButton {
     padding: 10px 20px;
-    background-color: #008CBA;
+    background-color: #0515f7;
     color: white;
     border: none;
     border-radius: 5px;
@@ -70,6 +69,6 @@
   }
   
   .projectsButton:hover {
-    background-color: #007bb5;
+    background-color: #0300ca;
   }
   
