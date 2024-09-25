@@ -28,6 +28,7 @@ export const addcomment = async(req,res)=>{
     });
     await newComment.save();
     task.comments.push(newComment);
+    await task.save();
     res.status(201).json({newComment,username});
 
   } catch (error) {

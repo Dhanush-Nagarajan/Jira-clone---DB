@@ -5,6 +5,10 @@ const SprintSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "Project",
     },
+    Sprint_title :{
+        type : String,
+        required: true
+    },
     Tasks: {
         type: [
             {

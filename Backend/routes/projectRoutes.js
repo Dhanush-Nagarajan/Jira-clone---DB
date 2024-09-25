@@ -6,8 +6,7 @@ import { addTask } from '../controllers/taskController.js';
 import { getProjectDetails } from '../controllers/getProjectDetails.js';
 import TaskAssigner from '../controllers/TaskAssignController.js';
 import { CreateSprint } from '../controllers/SprintController.js';
-
-
+import { fetchSprints } from '../controllers/fetchSprintsController.js';
 
 const router = express.Router();
 
@@ -16,6 +15,7 @@ router.delete("/deleteproject/:projectId",protectRoute,deleteProject);
 router.post("/addtask/:ProjectID/:SprintID",protectRoute,addTask);
 router.get("/getprojectdetails/:ProjectID",protectRoute,getProjectDetails);
 router.get("/assignTask/:TaskID/:UserID",protectRoute,TaskAssigner);
-router.get("/createsprint/:ProjectID",protectRoute,CreateSprint)
+router.post("/createsprint/:ProjectID",protectRoute,CreateSprint);
+router.get("/fetchsprint/:ProjectID",protectRoute,fetchSprints);
 
 export default router;
