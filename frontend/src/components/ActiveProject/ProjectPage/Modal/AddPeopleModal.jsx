@@ -27,8 +27,12 @@ const AddPeopleModal = ({ close, updateUsers }) => {
           },
         });
         setUsers(response.data);
+        if (response.status == 500) {      
+          
+      }
       } catch (error) {
-        console.error('Failed to fetch users:', error);
+        alert('You are not a admin');
+        
       }
     };
 

@@ -13,7 +13,7 @@ import Navbar from '../../HomePage/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
 import { useProjectContext } from '../../../Context/ProjectContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLeadById } from '../../../redux/actions/leadActions'; 
+import { fetchLeadById } from '../../../redux/actions/leadActions';
 
 const ProjectPage = () => {
   const dispatch = useDispatch();
@@ -21,8 +21,8 @@ const ProjectPage = () => {
   const [issueModal, setIssueModal] = useState(false);
   const [draggedTaskId, setDraggedTaskId] = useState(null);
   const [projectName, setProjectName] = useState('Sample Project');
-  
-  // Static task data
+  const userData = JSON.parse(localStorage.getItem('user'));
+  const userId = userData?._id;
   const [tasks, setTasks] = useState([
     { id: '1', title: 'Design homepage', taskId: 'TASK-01', status: 'TODO', assignee: 'John' },
     { id: '2', title: 'Develop user login API', taskId: 'TASK-02', status: 'IN PROGRESS', assignee: 'Jane' },
@@ -33,9 +33,9 @@ const ProjectPage = () => {
 
   const [leadNames, setLeadNames] = useState({});
   const [viewMore, setViewMore] = useState(false);
-
   const { projectDetails, loading, error, fetchParticipants, participants } = useProjectContext();
   const prevProjectDetailsRef = useRef();
+  const dropdownRef = useRef(); // Create a ref for the dropdown
 
   useEffect(() => {
     const fetchLeads = async () => {
@@ -82,6 +82,27 @@ const ProjectPage = () => {
     }
   }, [projectDetails, fetchProjectParticipants, projectName, tasks]);
 
+  // Close dropdown on blur
+  const handleBlur = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.relatedTarget)) {
+      setViewMore(false);
+    }
+  };
+
+  // Add event listener for blur
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setViewMore(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -118,11 +139,14 @@ const ProjectPage = () => {
     event.preventDefault();
   };
 
+  // Check if user is the creator of the project
+  const isProjectCreator = projectDetails?.createdBy === userId;
+
   return (
     <div className={style.con}>
       <div className={style.nav}>
         <Navbar />
-      </div> 
+      </div>
       <div className={style.page}>
         <Sidebar />
         <div className={style.body}>
@@ -151,9 +175,18 @@ const ProjectPage = () => {
                   {participant.fullName.charAt(0).toUpperCase()}
                 </div>
               ))}
-              {participants.length > 1 && <button className={style.bgcd} onClick={toggleViewMore}><HiDotsHorizontal /></button>}
+              {participants.length > 1 && (
+                <button
+                  className={style.bgcd}
+                  onClick={toggleViewMore}
+                  onBlur={handleBlur}  // Handle blur event
+                  ref={dropdownRef}  // Attach ref to dropdown
+                >
+                  <HiDotsHorizontal />
+                </button>
+              )}
               {viewMore && (
-                <div className={style.dropdown}>
+                <div className={style.dropdown} ref={dropdownRef}>
                   {participants.map((participant, index) => (
                     <div key={index} className={style.dropdownItem}>
                       {participant.fullName}
@@ -161,9 +194,11 @@ const ProjectPage = () => {
                   ))}
                 </div>
               )}
-              <div title='Add user' className={style.usname} onClick={toggleModal}>
-                <TiUserAdd />
-              </div>
+              {isProjectCreator && (
+                <div title='Add user' className={style.usname} onClick={toggleModal}>
+                  <TiUserAdd />
+                </div>
+              )}
               {addPeople && <AddPeopleModal close={setAddPeople} />}
             </div>
 
@@ -189,7 +224,7 @@ const ProjectPage = () => {
             <div className={style.todobox} onDragOver={allowDrop} onDrop={() => handleDrop('IN PROGRESS')}>
               <p className={style.flow}>IN PROGRESS</p>
               {filterTasksByStatus('IN PROGRESS').map((task) => (
-                <div key={task.id} className={style.taskbox} draggable onDragStart={() => handleDragStart(task.id)}>
+                <div key={task.id} className={style.taskbox} draggable onDragStart={() => handleDragStart(task.id)} onClick={toggleIssueModal}>
                   <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
                   <div className={style.inner}><p>{task.taskId}</p><div className={style.usname}>{task.assignee[0]}</div></div>
                 </div>
@@ -200,7 +235,7 @@ const ProjectPage = () => {
             <div className={style.todobox} onDragOver={allowDrop} onDrop={() => handleDrop('DONE')}>
               <p className={style.flow}>DONE <MdOutlineDone /></p>
               {filterTasksByStatus('DONE').map((task) => (
-                <div key={task.id} className={style.taskbox} draggable onDragStart={() => handleDragStart(task.id)}>
+                <div key={task.id} className={style.taskbox} draggable onDragStart={() => handleDragStart(task.id)} onClick={toggleIssueModal}>
                   <div className={style.inner}><p>{task.title}</p> <HiDotsHorizontal /></div>
                   <div className={style.inner}><p>{task.taskId}</p><div className={style.usname}>{task.assignee[0]}</div></div>
                 </div>
