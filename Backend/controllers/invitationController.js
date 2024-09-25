@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 import Invitation from "../models/invitationModels.js";
 import Project from "../models/projectModels.js";
 import User from "../models/userModels.js";
-import jwt from 'jsonwebtoken';                                       
+                                   
 
 export const inviteMember = async (req, res) => {
   try {
@@ -37,14 +37,14 @@ export const inviteMember = async (req, res) => {
       service: 'gmail',
       auth: {
         user: 'sa0922494@gmail.com',
-        pass: 'qybv jvgn dbyu qelt',
+        pass: process.env.mailPass,
       },
     });
 
     const inviteLink = `http://localhost:3000/signup?token=${token}`;
 
     const mailOptions = {
-      from: 'sa0922494@gmail.com',
+      from: '"Jira Clone"<sa0922494@gmail.com>',
       to: email,
       subject: 'Project Invitation',
       text: `You are invited to join the project. Register here: ${inviteLink}`,
