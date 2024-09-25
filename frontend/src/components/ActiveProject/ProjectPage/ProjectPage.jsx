@@ -151,7 +151,7 @@ const ProjectPage = () => {
   ))}
 
   {/* Display up to 5 participants */}
-  {participants.slice(0, 3).map((participant, index) => (
+  {participants.slice(0, 2).map((participant, index) => (
     <div key={index} className={style.usname}>
       {participant.fullName.charAt(0).toUpperCase()} {/* First letter of participant's full name */}
     </div>

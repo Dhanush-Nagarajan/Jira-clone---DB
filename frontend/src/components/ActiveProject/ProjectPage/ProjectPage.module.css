@@ -150,16 +150,17 @@
   padding: 10px;
   max-height: 200px;
   overflow-y: auto;
-  margin-top: 5px;
+  margin-top: 40px;
+  margin-left: 40px;
   z-index: 1000;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.1s ease-in-out;
   width: 200px;
 }
 
 .dropdownItem {
   padding: 8px 12px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.1s;
 }
 
 .dropdownItem:hover {
