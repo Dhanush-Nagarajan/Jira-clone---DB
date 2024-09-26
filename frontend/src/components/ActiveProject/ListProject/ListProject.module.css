@@ -73,13 +73,16 @@
   justify-content: end;
   height: 1rem;
   align-content: center;
+  cursor: pointer;
 }
 .tablebo{
   height: 1rem;
-
   align-content: center;
-  cursor: pointer;
   color: blue;
+}
+
+.del{
+  cursor: pointer;
 }
 
 .conheight{
@@ -98,9 +101,7 @@
   color: blue;
 }
 
-.tablebo:hover{
-  text-decoration: underline;
-}
+
 
 .moreActions {
   position: relative;  

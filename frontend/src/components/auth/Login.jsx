@@ -43,7 +43,7 @@ const Login = () => {
                     <div className='logo-con'>
                         <img className='img' src={jiralogo} alt='logo' onClick={() => navigate('/')} />
                         <span className='name-logo' onClick={() => navigate('/')}>Jira</span>
-                        <p className='font log'>Login to Continue...</p>
+                        <p className='log'>Login to Continue...</p>
                         <div className='ip-box font'>
                             <input
                                 value={user.email}
@@ -66,7 +66,7 @@ const Login = () => {
                     </div>
                     <div className='end'>
                         <p className='font'>
-                            <span>Does not Have an account?</span>
+                            <span>Does not Have an account ? </span>
                             <span className='sign-up'>
                                 <span onClick={() => navigate('/signup')}>Sign up here!</span>
                             </span>

@@ -67,7 +67,7 @@ const Signup = () => {
         <div className='sign-container'>
           <div className='logo-con'>
             <img className='img' src={jiralogo} alt="logo" onClick={home} /> <span className='name-logo' onClick={home}>Jira</span>
-            <p className='font si'>Sign-up to continue</p>
+            <p className='si'>Sign-up to continue</p>
             <div className='ip-box font'>
               <input
                 value={input.fullName}
