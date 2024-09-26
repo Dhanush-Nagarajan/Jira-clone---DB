@@ -4,12 +4,12 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 dotenv.config();
 import connectToMongoDB from './db/connectToMongoDB.js';
-import authRoutes from "./routes/authRoutes.js"
-import ProjectRoutes from "./routes/projectRoutes.js"
-import commentRoutes from "./routes/commentRoutes.js"
-import addUser from "./routes/addMemberRoutes.js"
-import getUsers from "./routes/userRoutes.js";
-import invite from "./routes/invitationRoutes.js";
+import authRoutes from "./routes/auth.Routes.js"
+import ProjectRoutes from "./routes/project.Routes.js"
+import commentRoutes from "./routes/comment.Routes.js"
+import addUser from "./routes/addMember.Routes.js"
+import getUsers from "./routes/user.Routes.js";
+import invite from "./routes/invitation.Routes.js";
 
 
 const app = express();
