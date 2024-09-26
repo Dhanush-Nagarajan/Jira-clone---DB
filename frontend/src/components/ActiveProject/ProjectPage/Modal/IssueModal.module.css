@@ -11,23 +11,30 @@
   cursor: auto;
 }
 
+
 .modal{
   padding: 2rem;
   height: 80%;
-  width: 80%;
+  width: 70%;
+  min-width: 25rem;
+  gap: 15px;
   background-color: white;  
   border-radius: 5px;
   display: flex;
 }
 
 .close{
+  padding: 0;
+  margin: 0;
   height: 1.5rem;
   width: 1.5rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: larger;
   position: fixed;
-  top: 4.4rem;
-  left: 88%;
+  top: 4.3rem;
+  left: 82.5%;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -87,12 +94,18 @@
 
 }
 
+.leftcon{
+  min-width: 10rem;
+  width: 100%;
+}
+
 .cbox{
-  height: 15rem;
-  width: 90%;
-  overflow:scroll;
+  height: 14rem;
+  min-width: 1rem;
+  overflow-y: auto;
 }
 .tablebox{
+  max-width: 20rem;
   height: 100%;
   width: 100%;
 }

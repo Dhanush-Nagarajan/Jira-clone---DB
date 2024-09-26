@@ -15,15 +15,15 @@ const IssueModal = ({ closeModal }) => {
     }
   }, [projectDetails, fetchParticipants]);
 
-  // Toggle dropdown visibility
+  
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
-  // Handle participant selection
+  
   const handleAssign = (participant) => {
-    setAssignedPerson(participant.fullName); // Set the selected participant as assigned person
-    setShowDropdown(false); // Close the dropdown after selection
+    setAssignedPerson(participant.fullName); 
+    setShowDropdown(false); 
   };
 
   return (
