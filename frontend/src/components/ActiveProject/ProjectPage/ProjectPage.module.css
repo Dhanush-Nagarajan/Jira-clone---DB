@@ -136,7 +136,7 @@
 }
 
 .taskbox{
-  height: 5rem;
+  min-height: 5rem;
   margin-top: 10px;
   padding: 5px;
   padding-left: 7px;

@@ -5,10 +5,10 @@ import { useProjectContext } from '../../../../Context/ProjectContext';
 
 const IssueModal = ({ closeModal }) => {
   const { projectDetails, fetchParticipants, participants } = useProjectContext();
-  const [showDropdown, setShowDropdown] = useState(false); // State to toggle dropdown visibility
-  const [assignedPerson, setAssignedPerson] = useState("Unassigned"); // State to track the selected assignee
+  const [showDropdown, setShowDropdown] = useState(false); 
+  const [assignedPerson, setAssignedPerson] = useState("Unassigned"); 
 
-  // Only trigger fetching participants when projectDetails change
+  
   useEffect(() => {
     if (projectDetails && projectDetails._id) {
       fetchParticipants(projectDetails._id);
