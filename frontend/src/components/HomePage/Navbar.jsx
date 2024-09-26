@@ -20,7 +20,7 @@ const Navbar = () => {
       console.log('Token:', token);
       console.log('User Data:', userData);
     }
-  }, [userData]);
+  }, []);
 
   // Function to handle outside click
   useEffect(() => {

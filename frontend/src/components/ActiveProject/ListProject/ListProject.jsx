@@ -66,9 +66,6 @@ const ListProject = () => {
     dispatch(deleteProjectById(projectId));
   };
 
-  const editProject = (projectId) => {
-    navigate(`/edit-project/${projectId}`); 
-  };
 
   if (loading || leadLoading) return <p>Loading...</p>;
   if (error || leadError) return <p>Error: {error || leadError}</p>;
@@ -129,7 +126,6 @@ const ListProject = () => {
                       />
                       {activeDropdown === project._id && (
                         <div className={style.dropdown}>
-                          <p onClick={() => editProject(project._id)}>Edit</p> {/* Edit option */}
                           <p onClick={() => deleteProject(project._id)}>Delete</p>
                         </div>
                       )}
