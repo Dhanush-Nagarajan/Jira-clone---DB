@@ -66,20 +66,4 @@ export const inviteMember = async (req, res) => {
 };
 
 
-export const verifyInvitation = async (req, res, next) => {
-  try {
-    const { token } = req.query;
 
-    const invitation = await Invitation.findOne({ token });
-
-    if (!invitation || invitation.status === 'Accepted') {
-      return res.status(400).json({ error: "Invalid or expired invitation token" });
-    }
-
-    req.invitation = invitation;
-    next();
-  } catch (error) {
-    console.log("Error in verifyInvitation middleware:", error.message);
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
