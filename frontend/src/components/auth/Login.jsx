@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from '../../assets/logo.png';
+import jiralogo from '../../assets/jiralogo.png';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -41,7 +41,7 @@ const Login = () => {
             <div className='login'>
                 <div className='login-container'>
                     <div className='logo-con'>
-                        <img className='img' src={logo} alt='logo' onClick={() => navigate('/')} />
+                        <img className='img' src={jiralogo} alt='logo' onClick={() => navigate('/')} />
                         <span className='name-logo' onClick={() => navigate('/')}>Jira</span>
                         <p className='font log'>Login to Continue...</p>
                         <div className='ip-box font'>

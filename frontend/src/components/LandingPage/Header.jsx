@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo.png';
+import jiralogo from '../../assets/jiralogo.png';
 import { IoSearch } from "react-icons/io5";
 import './Header.css';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ const Header = () => {
     <>    
       <div className="header">
         <div className='start'>
-          <img className="logo" src={logo} alt="logo" />
+          <img className="logo" src={jiralogo} alt="logo" />
           <h2 className="name">Jira</h2>
         </div>
 

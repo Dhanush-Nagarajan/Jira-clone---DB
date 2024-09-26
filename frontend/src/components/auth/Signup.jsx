@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../assets/logo.png';
+import jiralogo from '../../assets/jiralogo.png';
 import './Signup.css';
 import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
@@ -66,7 +66,7 @@ const Signup = () => {
       <div className='signup'>
         <div className='sign-container'>
           <div className='logo-con'>
-            <img className='img' src={logo} alt="logo" onClick={home} /> <span className='name-logo' onClick={home}>Jira</span>
+            <img className='img' src={jiralogo} alt="logo" onClick={home} /> <span className='name-logo' onClick={home}>Jira</span>
             <p className='font si'>Sign-up to continue</p>
             <div className='ip-box font'>
               <input
