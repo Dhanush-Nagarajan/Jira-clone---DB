@@ -39,17 +39,17 @@
 .features {
   display: grid;
   grid-template-columns: repeat(5, auto);
-  gap: 2%;
-
 }
 
-.featuresp {
+.features p{
+  max-width:1rem;
   cursor: pointer;
 }
 
-.featuresp:hover {
+.features p:hover{
   color: blue;
 }
+
 
 .end{
   align-items: center;

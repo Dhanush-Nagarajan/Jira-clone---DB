@@ -15,11 +15,11 @@ const Header = () => {
         </div>
 
         <div className="features">
-          <p className="featuresp">Features</p>
-          <p className="featuresp">Product</p>
-          <p className="featuresp">Template</p>
-          <p className="featuresp">Pricing</p>
-          <p className="featuresp">Enterprise</p>
+          <p>Product</p>
+          <p>Template</p>
+          <p>Pricing</p>
+          <p>Enterprise</p>
+          <p>Features</p>
         </div>
 
         <div className='end'>
