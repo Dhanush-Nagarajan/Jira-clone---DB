@@ -51,6 +51,19 @@
   
 }
 
+.deleteIcon {
+  color: black;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.sprintHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 .bgc{
     height: 2rem;
     width: auto;
@@ -192,4 +205,93 @@
   border-style: dashed;
   width: 75vw;
   border-color: lightgrey;
+}
+
+.input{
+  height: 2rem;
+  padding-left: 9px;
+}
+
+.sprintHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.sname{
+  display: flex;
+  flex-direction: row;
+}
+
+.startsb{
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 2rem;
+  width: 6rem;
+  background-color: rgb(226, 225, 225);;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.startsb:hover{
+  background-color: lightgrey;
+}
+
+
+.sprintButton{
+    margin-left: 0.5rem;
+    height: 2rem;
+    width: auto;
+    padding-left: 9px;
+    padding-right: 9px;
+    background-color: rgb(226, 225, 225);
+    align-content: center;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    left:7%;
+  
+}
+
+.sprintButton:hover{
+  background-color: lightgrey;
+}
+
+.text {
+  display: flex;
+  flex-direction: column; /* Make sure sprints stack vertically */
+  text-align: center;
+  gap: 20px; /* Add space between each sprint */
+}
+
+.sprint {
+  margin-bottom: 20px; /* Add space between sprints */
+  padding: 15px; /* Add padding to each sprint */
+  border: 1px solid #ddd; /* Optional: Add a border for visibility */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  background-color: #f9f9f9; /* Optional: Add a light background */
+  
+}
+
+
+.addIssueButton{
+  margin-left: 0.5rem;
+}
+
+.creteIssueButton{
+  margin-top: 0.5rem;
+}
+
+.issueItem{
+  margin-bottom: 2px;
+  display: flex;
+}
+
+.issues{
+  margin-top: 1rem;
 }
