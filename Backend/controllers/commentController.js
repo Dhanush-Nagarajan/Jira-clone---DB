@@ -9,6 +9,9 @@ export const addcomment = async(req,res)=>{
   try {
     const createdBy = req.user._id;
 
+    const ProjectID = await Task.findById(TaskID).select('Project_ID');
+    const projectIdValue = ProjectID.Project_ID;
+
     const user = await User.findById(createdBy);
     const task = await Task.findById(TaskID);
     if (!user) {
@@ -20,7 +23,8 @@ export const addcomment = async(req,res)=>{
     
     const username = req.user.fullName;
 
-    const newComment = new Comment({  
+    const newComment = new Comment({ 
+      Project_ID: projectIdValue, 
       Task_ID: TaskID,
       createdBy,
       comment,

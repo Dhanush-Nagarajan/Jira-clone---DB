@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const commentSchema = new mongoose.Schema({
+  Project_ID:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Project',
+    required:true
+  },
   Task_ID: {
     type: mongoose.Schema.Types.ObjectId,
 		ref: 'Task',
