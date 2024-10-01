@@ -7,7 +7,6 @@ import { getProjectDetails } from '../controllers/getProjectDetails.js';
 import TaskAssigner from '../controllers/TaskAssignController.js';
 import { CreateSprint } from '../controllers/SprintController.js';
 import { fetchSprints } from '../controllers/fetchSprintsController.js';
-import { getTasks } from '../controllers/getTasksController.js';
 
 const router = express.Router();
 
@@ -18,7 +17,6 @@ router.get("/getprojectdetails/:ProjectID",protectRoute,getProjectDetails);
 router.get("/assignTask/:TaskID/:UserID",protectRoute,TaskAssigner);
 router.post("/createsprint/:ProjectID",protectRoute,CreateSprint);
 router.get("/fetchsprint/:ProjectID",protectRoute,fetchSprints);
-router.get("/fetchtasks/:SprintID",protectRoute,getTasks);
 
 
 
